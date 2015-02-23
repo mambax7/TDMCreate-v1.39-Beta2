@@ -1,161 +1,54 @@
-=================================
-2013/05/12: Version 1.39 RC 1
-=================================
+<strong><u>=> Version 1.01 Final (2013-10-22)</u></strong>
+- fixed two templates (bleekk)
 
-- Added minimum php textbox in admin/modules.php
-- Added minimum xoops textbox in admin/modules.php
-- Added minimum admin textbox in admin/modules.php
-- Added minimum mysql textbox in admin/modules.php
-- fixed bugs
+<strong><u>=> Version 1.0 Final (2013-07-18)</u></strong>
+- added missing URL for doc image in \blocks\items_spot.php
 
-=================================
-2013/04/01: Version 1.39 Beta 4
-=================================
+<strong><u>=> Version 1.0 RC (2011-12-04)</u></strong>
+- Converted to XOOPS 2.5.0 ModuleAdmin GUI
 
-- fixed several error notices and bugs
+<strong><u>=> Version 1.0 Beta (2010-04-02)</u></strong>
+- Improved : Images sorted by Name in submit form (trabis)
+- Added : Class for handling block forms (trabis)
+- Fixed : Date to date block blank page (trabis)
+- Fixed : Extra '-' in page title (trabis/mboyden)
 
-=================================
-2013/03/28: Version 1.39 Beta 3
-=================================
-
-- fixed several error notices and bugs
-
-=================================
-2013/03/25: Version 1.39 Beta 2
-=================================
-
-- fixed several error notices and bugs
-
-=================================
-2013/03/22: Version 1.39 Beta 1
-=================================
-
-- fixed several error notices and bugs
-
-=================================
-2013/02/23: Version 1.38.6 Beta 1
-=================================
-
-- added: fields notifications, paypal button and subversion in modules
-- added: fields notifications in tables
-- modified: file const_header.php for subversion
-- modified: file const_admin_about.php for paypal button
-- added: module info pulled from Preferences
-- fixed several error notices and bugs
-
-=================================
-2012/09/24: Version 1.38.1 Beta 1
-=================================
-
-- added: option to rename module and tables
-- added: generated tables start with "mod_"
-- added: logo image generator
-- added: user info stored in Preferences
-- added: module info pulled from Preferences
-- added: plugins for Waiting module
-- clean-up of English translations, and constants
-- fixed several error notices and bugs
-
-=================================
-2012/07/13: Version 1.38 Final
-=================================
-
-- Fixed bug (Timgno)
-- Release only for xoops 2.5.5 (Timgno)
-
-=================================
-2011/10/10: Version 1.37 Final
-=================================
-
-- Fixed bug default string in sql file (Timgno)
-- Added class for const_architecture.php (Timgno)
-- Release only for xoops 2.5.x (Timgno)
-
-=================================
-2011/10/10: Version 1.37 RC 3
-=================================
-
-- Fixed default and optional button paypal in admin/about.php (Timgno)
-- Fixed default image module string in $module_name_slogo (Timgno)
-- Deleted code creations folders deco & admin in file const_architecture.php (Timgno)
-- Release only for xoops 2.5.x (Timgno)
-
-=================================
-2011/10/03: Version 1.37 RC 2
-=================================
-
-- Bugfixed directory select images tables from & upload to Frameworks (Timgno)
-- Added in mysql options fields, decimal/float/enum (Timgno)
-
-=================================
-2011/09/15: Version 1.37 RC 1
-=================================
-
-- Added code directory select images tables from & upload to Frameworks (Timgno)
-
-=================================
-2011/09/07: Version 1.37 beta 4
-=================================
-
-- Added buttons New Table, New Categories & List Table (Timgno)
-
-=================================
-2011/08/24: Version 1.37 beta 3
-=================================
-
-- Added buttons New Table, New Categories & List Table (Timgno)
-
-=================================
-2011/08/08: Version 1.37 beta 2
-=================================
-
-- Added buttons New Module & List Module (Timgno)
-
-=================================
-2011/08/07: Version 1.37 beta 1
-=================================
-
-- Added class constArch (Timgno)
-
-=================================
-2011/06/27: Version 1.36 beta
-=================================
-
-- fixed (Mamba)
-
-=================================
-2011/04/22: Version 1.18
-=================================
-
-- Added field forum url (Timgno)
-- Added field forum title (Timgno)
-- Added function createFile (Timgno)
-- Changes code lines all files in cost folder for create file with function createFile (Timgno)
-
-=================================
-2011/03/07: Version 1.15
-=================================
-
-- Email Author (timgno)
-- Advertise in const_xoops_version.php (timgno)
-- Keywords for SEO in const_xoops_version.php (timgno)
-- Datetime php function, copyright autoincrement years in const_entete.php (timgno)
-- Defines in language pack (timgno)
-- Added const_changelog.php (timgno)
-- Added const_templates.php (timgno)
-- Added const_main_language.php (timgno)
-
-=================================
-2010/12/25: Version 1.11
-=================================
-
-- changes admin gui for xoops 2.5.x (Mamba)
-- internationalization - the created module will local language based (mamba)
-- added changelog (mamba)
-- updated English translations (Mamba)
-- replaced GIF images to PNG (Mamba)
-
-=================================
-2010/12/25: Version 1.10
-=================================
-- Original release (TDM)
+<strong><u>=> Version 1.0 Alpha (2009-08-24)</u></strong>
+- Imported : smartsection Version 2.14 Final (trabis)
+- Removed : dependecy from smartobject (trabis)
+- Removed : unused files (trabis)
+- Improved: renamed functions and clean code acording to XOOPS CODING STANDARDS (trabis)
+- Added : xoops 2.3 compatibility (trabis)
+- Added : missing index.html files in some folders (trabis)
+- Added : text truncate option in spotlight block (trabis/Mowaffak)
+- Changed : article submission for admins using submit.php (trabis/Mowaffak)
+- Fixed : cannot show keyword in Japanese and multibyte language (ohwada/trabis)
+- Fixed : keyword "abc" match "abccccc" (ohwada/trabis)
+- Fixed : many Notice when "Disable comments" (ohwada/trabis)
+- Fixed : missing argument when save file (ohwada/trabis)
+- Fixed : undefined variable in admin's category (ohwada/trabis)
+- Fixed : invalid argument when guest view (ohwada/trabis)
+- Fixed : wrong style in print template file (ohwada/trabis)
+- Fixed : parse error and Notice in print (ohwada/trabis)
+- Fixed : enable "Print" and "PDF" (ohwada/trabis)
+- Improved : Hide Read More link in spot block if no body and no truncate used (trabis/Mowaffak)
+- Fixed : preview function was not working correctly (trabis)
+- Improved : removed fpdf libray and added tcpdf library (trabis)
+- Added : ajax rating (trabis)
+- Added : Xoops 2.3 editors and access permissions (trabis)
+- Added : easy module cloning from admin area with auto logo generation (trabis/Xoops French Team)
+- Added : Second title (subtitle) for articles (Shiva)
+- Fixed : english errors in language files (AEIOU)
+- Added : module preferences separated by categories (trabis)
+- Added : advanced search system (trabis/phppp)
+- Added : Columns block (bandit-x/trabis)
+- Added : Multi image support for articles, using core image manager (trabis)
+- Improved : Added support for 'tellafriend' module from GIJOE instead of using mailto link (trabis/GIJOE)
+- Added : Tabbed interface for submit pages (trabis)
+- Added : Adding moderator per category (trabis)
+- Added : Author alias (trabis)
+- Added : Hide sub categories in main page only (Mowaffak)
+- Added : Latest news block (trabis/bandit-x/Mowaffak)
+- Added : Category selection block (trabis/Mowaffak)
+- Added : Image manager / easy uploading (trabis)
+- Fixed : Item name not available in comment notification (Phoenyx)
