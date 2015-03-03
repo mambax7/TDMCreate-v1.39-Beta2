@@ -14,9 +14,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @license     TDM GPL license
- * @author		TDM TEAM DEV MODULE 
+ * @author		TDM TEAM DEV MODULE
  *
  * ****************************************************************************
- */
-
-?>
+ */;

@@ -21,18 +21,18 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_class_request($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_';
-	$file = 'request.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/class/'.$file;	
-    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/class/'.$file;	
-	$mod_name = ucfirst($mod_name);
-	$mod_name_request = ucfirst($mod_name).'Request';
-	$mod_name_filter_input = ucfirst($mod_name).'FilterInput';
-	$mod_request_notrim = strtoupper($mod_name).'_REQUEST_NOTRIM';
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_AM_'.strtoupper($mod_name).'_';
+    $file = 'request.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/class/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/class/'.$file;
+    $mod_name = ucfirst($mod_name);
+    $mod_name_request = ucfirst($mod_name).'Request';
+    $mod_name_filter_input = ucfirst($mod_name).'FilterInput';
+    $mod_request_notrim = strtoupper($mod_name).'_REQUEST_NOTRIM';
     $mod_request_allowraw = strtoupper($mod_name).'_REQUEST_ALLOWRAW';
     $mod_request_allowhtml = strtoupper($mod_name).'_REQUEST_ALLOWHTML';
-	$text = '<?php'.const_header($modules, $file); 
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \n\ndefined('XOOPS_ROOT_PATH') or die('Restricted access');
 
@@ -967,12 +967,12 @@ class {$mod_name_filter_input}
     }
 }
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_CLASSES,
-				_AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_CLASSES,
-					_AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_CLASSES,
+                _AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_CLASSES,
+                    _AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
+    }
 }

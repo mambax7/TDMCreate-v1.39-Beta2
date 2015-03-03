@@ -20,28 +20,28 @@
  */
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_footer($modules)
-{	
-	$mod_name = $modules->getVar('mod_name');
-	$mod_support_name = $modules->getVar('mod_support_name');
-	$language = '_AM_'.strtoupper($mod_name).'_';
-	$file = 'footer.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+{
+    $mod_name = $modules->getVar('mod_name');
+    $mod_support_name = $modules->getVar('mod_support_name');
+    $language = '_AM_'.strtoupper($mod_name).'_';
+    $file = 'footer.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \necho "<div class='center'><a href='http://www.xoops.org' title='Visit XOOPS' target='_blank'>
          <img src='".\$sysPathIcon32."/xoopsmicrobutton.gif' alt='XOOPS' /></a></div>";
 echo "<div class='center smallsmall italic pad5'>
           <strong>" . \$xoopsModule->getVar('name') . "</strong> ".{$language}MAINTAINEDBY."
             <a href='{$modules->getVar('mod_support_url')}' title='Visit {$mod_support_name}' class='tooltip' rel='external'>{$mod_support_name}</a></div>";
-xoops_cp_footer();  
+xoops_cp_footer();
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ADMINS,
-				_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ADMINS,
-					_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ADMINS,
+                _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ADMINS,
+                    _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    }
 }

@@ -21,20 +21,20 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_menu($modules, $tables_arr, $table_permissions)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MI_'.strtoupper($mod_name).'_ADMENU';
-	$file = 'menu.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
-	$menu = 1;
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MI_'.strtoupper($mod_name).'_ADMENU';
+    $file = 'menu.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
+    $menu = 1;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \n\$dirname = basename( dirname( dirname( __FILE__ ) ) ) ;
 \$module_handler =& xoops_gethandler('module');
 \$xoopsModule =& XoopsModule::getByDirname(\$dirname);
 \$moduleInfo =& \$module_handler->get(\$xoopsModule->getVar('mid'));
 \$pathIcon32 = \$moduleInfo->getInfo('sysicons32');
-\$adminmenu = array(); 
+\$adminmenu = array();
 \$i = 1;
 \$adminmenu[\$i]['title'] = {$language}{$menu};
 \$adminmenu[\$i]['link'] = 'admin/index.php';
@@ -42,20 +42,20 @@ $text .= <<<EOT
 \$i++;
 EOT;
     $menu++;
-	foreach (array_keys($tables_arr) as $i)
-	{		
-		if ( $tables_arr[$i]->getVar('table_admin') == 1 ) 
-		{ 
+    foreach (array_keys($tables_arr) as $i)
+    {
+        if ( $tables_arr[$i]->getVar('table_admin') == 1 )
+        {
 $text .= <<<EOT
 \n\$adminmenu[\$i]['title'] = {$language}{$menu};
 \$adminmenu[\$i]['link'] = 'admin/{$tables_arr[$i]->getVar('table_name')}.php';
 \$adminmenu[\$i]['icon'] = \$pathIcon32.'/{$tables_arr[$i]->getVar('table_image')}';
 \$i++;
 EOT;
-		$menu++;
-		}
-	}
-	$menu--;
+        $menu++;
+        }
+    }
+    $menu--;
     //$menu_id = $menu;
 //unset( $menu );
 if( $table_permissions == 1 ) {
@@ -75,12 +75,12 @@ $text .= <<<EOT
 unset( \$i );
 EOT;
 unset( $menu );
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ADMINS,
-				_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ADMINS,
-					_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ADMINS,
+                _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ADMINS,
+                    _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    }
 }

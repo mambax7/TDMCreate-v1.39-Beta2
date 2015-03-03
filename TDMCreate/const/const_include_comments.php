@@ -21,108 +21,108 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_include_comments($modules, $table_name, $table_fieldname, $table_fields, $table_parameters)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'comment_edit.php';	
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'comment_edit.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once '../../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/include/comment_edit.php';
 EOT;
-	
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_COMMENTS,
-				_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_COMMENTS,
-					_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	}
-// --------------------------------------------------------------------	
-	
-	$file = 'comment_delete.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_COMMENTS,
+                _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_COMMENTS,
+                    _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    }
+// --------------------------------------------------------------------
+    
+    $file = 'comment_delete.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once '../../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/include/comment_delete.php';
 EOT;
-	
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_COMMENTS,
-				_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_COMMENTS,
-					_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	}
-// --------------------------------------------------------------------			  
-	
-	$file = 'comment_post.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_COMMENTS,
+                _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_COMMENTS,
+                    _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    }
+// --------------------------------------------------------------------
+    
+    $file = 'comment_post.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once '../../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/include/comment_post.php';
 EOT;
-	
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_COMMENTS,
-				_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_COMMENTS,
-					_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	}
-// --------------------------------------------------------------------	
-	
-	$file = 'comment_eply.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_COMMENTS,
+                _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_COMMENTS,
+                    _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    }
+// --------------------------------------------------------------------
+    
+    $file = 'comment_eply.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once '../../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/include/comment_eply.php';
 EOT;
-	
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_COMMENTS,
-				_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_COMMENTS,
-					_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	}
+    
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_COMMENTS,
+                _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_COMMENTS,
+                    _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    }
 
-	//fields
-	$fields_total = explode('|', $table_fields);
-	$nb_fields = count($fields_total);
-	//print_r($fields_total);
-	//parameters
-	$parameters_total = explode('|', $table_parameters);
+    //fields
+    $fields_total = explode('|', $table_fields);
+    $nb_fields = count($fields_total);
+    //print_r($fields_total);
+    //parameters
+    $parameters_total = explode('|', $table_parameters);
 
-	//Recuperation des parameters affichage dans le formulaire
-	for($j=0; $j<$nb_fields; $j++)
-	{
-		$fields = explode(':', $fields_total[$j]);
-		//Afficher dans les elements du formulaire et choisir le type
-			if( $j != 0 ) 
-			{
-				$parameters1 = explode(':', $parameters_total[$j-1]);
-				if ( $parameters1[4] == 1 )
-				{
-					$fpmf = $fields[0];
-				}
-			}
-	}	
-	
-	$file = 'comment_new.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    //Recuperation des parameters affichage dans le formulaire
+    for($j=0; $j<$nb_fields; $j++)
+    {
+        $fields = explode(':', $fields_total[$j]);
+        //Afficher dans les elements du formulaire et choisir le type
+            if( $j != 0 )
+            {
+                $parameters1 = explode(':', $parameters_total[$j-1]);
+                if ( $parameters1[4] == 1 )
+                {
+                    $fpmf = $fields[0];
+                }
+            }
+    }
+    
+    $file = 'comment_new.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 include '../../mainfile.php';
 include_once XOOPS_ROOT_PATH.'/modules/{$mod_name}/class/{$table_name}.php';
@@ -134,12 +134,12 @@ if (\$com_itemid > 0) {
 	include XOOPS_ROOT_PATH.'/include/comment_new.php';
 }
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_COMMENTS,
-				_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_COMMENTS,
-					_AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
-	}  
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_COMMENTS,
+                _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_COMMENTS,
+                    _AM_TDMCREATE_CONST_NOTOK_COMMENTS, $file);
+    }
 }

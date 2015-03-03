@@ -21,14 +21,14 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_css_style( $modules )
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'style.css';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/css/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/css/'.$file;
-	$text = '@charset \'UTF-8\';
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'style.css';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/css/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/css/'.$file;
+    $text = '@charset \'UTF-8\';
 '.const_header($modules, $file).'
-'; 
-	$text .= <<<EOT
+';
+    $text .= <<<EOT
 table {
    margin: 0;
 }
@@ -59,12 +59,12 @@ ul.fields > li {
 
 EOT
 ;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_CSS,
-				_AM_TDMCREATE_CONST_NOTOK_CSS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_CSS,
-					_AM_TDMCREATE_CONST_NOTOK_CSS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_CSS,
+                _AM_TDMCREATE_CONST_NOTOK_CSS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_CSS,
+                    _AM_TDMCREATE_CONST_NOTOK_CSS, $file);
+    }
 }

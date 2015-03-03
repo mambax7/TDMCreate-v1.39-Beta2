@@ -21,17 +21,17 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_sql($modules, $table_name, $table_fieldname, $table_category, $table_fields)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'mysql.sql';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/sql/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/sql/'.$file;
-	$text = const_fields($mod_name, $table_name, $table_fieldname, $table_category, $table_fields, '', 0, 0, 0, 2);
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_SQL,
-			_AM_TDMCREATE_CONST_NOTOK_SQL, $file, 'even', 'a+');
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_SQL,
-					_AM_TDMCREATE_CONST_NOTOK_SQL, $file, 'even', 'a+');
-	}
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'mysql.sql';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/sql/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/sql/'.$file;
+    $text = const_fields($mod_name, $table_name, $table_fieldname, $table_category, $table_fields, '', 0, 0, 0, 2);
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_SQL,
+            _AM_TDMCREATE_CONST_NOTOK_SQL, $file, 'even', 'a+');
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_SQL,
+                    _AM_TDMCREATE_CONST_NOTOK_SQL, $file, 'even', 'a+');
+    }
 }

@@ -21,14 +21,14 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_xoopsversion($modules, $tbl_name, $table_fields, $table_parameters, $table_image, $tables_arr)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$stl_mod_name = strtolower($mod_name);
-	$language = '_MI_'.strtoupper($mod_name);
-	$file = 'xoops_version.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$date = date('Y/m/d');
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $stl_mod_name = strtolower($mod_name);
+    $language = '_MI_'.strtoupper($mod_name);
+    $file = 'xoops_version.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $date = date('Y/m/d');
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \nif (!defined('XOOPS_ROOT_PATH')){ exit(); }
 
@@ -82,14 +82,14 @@ $text .= <<<EOT
     // Admin system menu
 	'system_menu' => 1,
 	// Admin things
-	'hasAdmin' => 1,	
+	'hasAdmin' => 1,
 	'adminindex' => "admin/index.php",
 	'adminmenu' => "admin/menu.php",\n
 EOT;
 } else {
 $text .= <<<EOT
     // Admin system menu
-	'system_menu' => 0,	
+	'system_menu' => 0,
 	// Admin things
 	'hasAdmin' => 0, \n
 EOT;
@@ -100,13 +100,13 @@ $text .= <<<EOT
 	'hasMain' => 1,
 	// Scripts to run upon installation or update
 	'onInstall' => "include/install.php",
-	'onUpdate' => "include/update.php"	
+	'onUpdate' => "include/update.php"
 );
 EOT;
 } else {
 $text .= <<<EOT
     // Menu
-	'hasMain' => 0		
+	'hasMain' => 0
 );
 EOT;
 }
@@ -119,12 +119,12 @@ $text .= <<<EOT
 EOT;
     foreach (array_keys($tables_arr) as $i)
     {
-		$text .= <<<EOT
+        $text .= <<<EOT
 \n\$modversion['tables'][{$j}] = "mod_{$stl_mod_name}_{$tables_arr[$i]->getVar('table_name')}";
 EOT;
 $j++;
-	}  
-	unset($j);
+    }
+    unset($j);
 }
 if ( $modules->getVar('mod_search') == 1 ) {
 $text .= <<<EOT
@@ -133,7 +133,7 @@ $text .= <<<EOT
 \$modversion['search']['file'] = "include/search.inc.php";
 \$modversion['search']['func'] = "{$stl_mod_name}_search";
 EOT;
-} 
+}
 
 if ( $modules->getVar('mod_comments') == 1 ) {
 $text .= <<<EOT
@@ -153,8 +153,8 @@ $text .=<<<EOT
 \$modversion['templates'][] = array('file' => '{$stl_mod_name}_index.html', 'description' => '');
 EOT;
 foreach (array_keys($tables_arr) as $i)
-{	
-	$table_name = $tables_arr[$i]->getVar('table_name');
+{
+    $table_name = $tables_arr[$i]->getVar('table_name');
 $text .= <<<EOT
 \n\$modversion['templates'][] = array('file' => '{$stl_mod_name}_{$table_name}.html', 'description' => '');
 EOT;
@@ -167,12 +167,12 @@ $text .= <<<EOT
 EOT;
 $keywords = array();
 foreach (array_keys($tables_arr) as $i) {
-	$table_name = $tables_arr[$i]->getVar('table_name');
-	$table_blocks = $tables_arr[$i]->getVar('table_blocks');		
-	$table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
-	if ($table_blocks == 1) {            
-		$language1 = $language . '_' . strtoupper($table_name);
-		$text .= <<<EOT
+    $table_name = $tables_arr[$i]->getVar('table_name');
+    $table_blocks = $tables_arr[$i]->getVar('table_blocks');
+    $table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
+    if ($table_blocks == 1) {
+        $language1 = $language . '_' . strtoupper($table_name);
+        $text .= <<<EOT
 \n\$modversion['blocks'][] = array(
 	'file' => "{$table_name}.php",
 	'name' => {$language1}_BLOCK,
@@ -182,8 +182,8 @@ foreach (array_keys($tables_arr) as $i) {
 	'options' => "{$table_fieldname}|5|25|0",
 	'template' => "{$table_name}_block.html");\n
 EOT;
-	$keywords[] = $table_name;            
-	}
+    $keywords[] = $table_name;
+    }
 }
 $text .= <<<EOT
 \n// Config
@@ -230,7 +230,7 @@ foreach (\$admin_xoopsgroups as \$key => \$admin_group) {
     'formtype' => "select_multi",
     'valuetype' => "array",
     'options' => \$admin_groups,
-    'default' => \$admin_groups);	
+    'default' => \$admin_groups);
 EOT;
 }
 $text .= <<<EOT
@@ -240,9 +240,9 @@ $text .= <<<EOT
     'description' => "{$language}_KEYWORDS_DESC",
     'formtype' => "textbox",
     'valuetype' => "text",
-    'default' => "{$stl_mod_name}, 
+    'default' => "{$stl_mod_name},
 EOT;
-	$text .= implode(', ', $keywords);
+    $text .= implode(', ', $keywords);
 $text .= <<<EOT
 ");\n
 EOT;
@@ -314,7 +314,7 @@ $text .= <<<EOT
     'description' => "{$language}_FBCOMMENTS_DESC",
     'formtype' => "yesno",
     'valuetype' => "int",
-	'default' => 0); 
+	'default' => 0);
 EOT;
 if ( $modules->getVar('mod_notifications') == 1 ) {
 $text .= <<<EOT
@@ -324,12 +324,12 @@ $text .= <<<EOT
 \$modversion['notification']['lookup_func'] = '{$stl_mod_name}_notify_iteminfo';
 
 \$modversion['notification']['category'][] = array(
-	'name' => "global", 
+	'name' => "global",
 	'title' => {$language}_GLOBAL_NOTIFY,
 	'description' => {$language}_GLOBAL_NOTIFY_DESC,
 	'subscribe_from' => array('index.php', 'viewcat.php', 'singlefile.php'));
 
-\$modversion['notification']['category'][] = array( 
+\$modversion['notification']['category'][] = array(
 	'name' => "category",
 	'title' => {$language}_CATEGORY_NOTIFY,
 	'description' => {$language}_CATEGORY_NOTIFY_DESC,
@@ -337,7 +337,7 @@ $text .= <<<EOT
 	'item_name' => "cid",
 	'allow_bookmark' => 1);
 
-\$modversion['notification']['category'][] = array( 
+\$modversion['notification']['category'][] = array(
 	'name' => "file",
 	'title' => {$language}_FILE_NOTIFY,
 	'description' => {$language}_FILE_NOTIFY_DESC,
@@ -345,7 +345,7 @@ $text .= <<<EOT
 	'item_name' => "lid",
 	'allow_bookmark' => 1);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "new_category",
 	'category' => "global",
 	'title' => {$language}_GLOBAL_NEWCATEGORY_NOTIFY,
@@ -354,7 +354,7 @@ $text .= <<<EOT
 	'mail_template' => "global_newcategory_notify",
 	'mail_subject' => {$language}_GLOBAL_NEWCATEGORY_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "file_modify",
 	'category' => "global",
 	'admin_only' => 1,
@@ -364,7 +364,7 @@ $text .= <<<EOT
 	'mail_template' => "global_filemodify_notify",
 	'mail_subject' => {$language}_GLOBAL_FILEMODIFY_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "file_broken",
 	'category' => "global",
 	'admin_only' => 1,
@@ -374,7 +374,7 @@ $text .= <<<EOT
 	'mail_template' => "global_filebroken_notify",
 	'mail_subject' => {$language}_GLOBAL_FILEBROKEN_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "file_submit",
 	'category' => "global",
 	'admin_only' => 1,
@@ -384,7 +384,7 @@ $text .= <<<EOT
 	'mail_template' => "global_filesubmit_notify",
 	'mail_subject' => {$language}_GLOBAL_FILESUBMIT_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "new_file",
 	'category' => "global",
 	'title' => {$language}_GLOBAL_NEWFILE_NOTIFY,
@@ -393,7 +393,7 @@ $text .= <<<EOT
 	'mail_template' => "global_newfile_notify",
 	'mail_subject' => {$language}_GLOBAL_NEWFILE_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "file_submit",
 	'category' => "category",
 	'admin_only' => 1,
@@ -403,7 +403,7 @@ $text .= <<<EOT
 	'mail_template' => "category_filesubmit_notify",
 	'mail_subject' => {$language}_CATEGORY_FILESUBMIT_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "new_file",
 	'category' => "category",
 	'title' => {$language}_CATEGORY_NEWFILE_NOTIFY,
@@ -412,7 +412,7 @@ $text .= <<<EOT
 	'mail_template' => "category_newfile_notify",
 	'mail_subject' => {$language}_CATEGORY_NEWFILE_NOTIFY_SUBJECT);
 
-\$modversion['notification']['event'][] = array( 
+\$modversion['notification']['event'][] = array(
 	'name' => "approve",
 	'category' => "file",
 	'admin_only' => 1,
@@ -423,12 +423,12 @@ $text .= <<<EOT
 	'mail_subject' => {$language}_FILE_APPROVE_NOTIFY_SUBJECT);
 EOT;
 }
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ROOTS,
-				_AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ROOTS,
-					_AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ROOTS,
+                _AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ROOTS,
+                    _AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
+    }
 }

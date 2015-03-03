@@ -21,13 +21,13 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_templates_index($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MA_'.strtoupper($mod_name).'_';
-	$file = $mod_name.'_index.html';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
-	$stl_mod_name = strtolower($mod_name);
-	$text = <<<EOT
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MA_'.strtoupper($mod_name).'_';
+    $file = $mod_name.'_index.html';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
+    $stl_mod_name = strtolower($mod_name);
+    $text = <<<EOT
 <{include file="db:{$stl_mod_name}_header.html"}>
 <table class="outer {$stl_mod_name}" cellspacing="0" cellpadding="0">
     <tbody>
@@ -38,12 +38,12 @@ function const_templates_index($modules)
 </table>
 <{include file="db:{$stl_mod_name}_footer.html"}>
 EOT;
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_TEMPLATES,
-			_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_TEMPLATES,
-					_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_TEMPLATES,
+            _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_TEMPLATES,
+                    _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    }
 }

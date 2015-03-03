@@ -21,58 +21,58 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_templates_pages($modules, $table_name, $table_fieldname, $table_fields)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MA_'.strtoupper($mod_name).'_';
-	$file = $mod_name.'_'.$table_name.'.html';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
-	//fields
-	$fields = explode('|', $table_fields);
-	$nb_fields = count($fields);
-	
-	$text = '<{include file="db:'.$mod_name.'_header.html"}>';
-	if($table_name != null)
-	{
-		$text .= '
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MA_'.strtoupper($mod_name).'_';
+    $file = $mod_name.'_'.$table_name.'.html';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
+    //fields
+    $fields = explode('|', $table_fields);
+    $nb_fields = count($fields);
+    
+    $text = '<{include file="db:'.$mod_name.'_header.html"}>';
+    if($table_name != null)
+    {
+        $text .= '
 <div class="outer">
 	<table class="'.$mod_name.'" cellpadding="0" cellspacing="0" width="100%">
 		<tr class="head">
 		';
-		for ($i = 0; $i < $nb_fields; $i++)
-		{
-			$structure_fields = explode(':', $fields[$i]);	
+        for ($i = 0; $i < $nb_fields; $i++)
+        {
+            $structure_fields = explode(':', $fields[$i]);
 $text .= '  	<th class="fields"><{$smarty.const.'.$language.strtoupper($structure_fields[0]).'}></th>
 	';
-		}
+        }
 $text .= '</tr>
-		<{foreach item='.$table_fieldname.' from=$'.$table_name.'}>	
-            <tr class="<{cycle values=\'odd, even\'}>">		
+		<{foreach item='.$table_fieldname.' from=$'.$table_name.'}>
+            <tr class="<{cycle values=\'odd, even\'}>">
 ';
-		for ($i = 0; $i < $nb_fields; $i++)
-		{
-			$structure_fields = explode(':', $fields[$i]);	
+        for ($i = 0; $i < $nb_fields; $i++)
+        {
+            $structure_fields = explode(':', $fields[$i]);
 $text .= '  	<td class="fields"><{$'.$table_fieldname.'.'.$structure_fields[0].'}></td>
 	';
-		}
+        }
 $text .= '	</tr>
 		<{/foreach}>
 	</table>
 </div>';
-	} else {
+    } else {
 $text .= '<div class="outer">
     <div class="center">None</div>
     <br />
 </div>';
-	}
+    }
 $text .= '
 <{include file="db:'.$mod_name.'_footer.html"}>
 ';
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_TEMPLATES,
-			_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_TEMPLATES,
-					_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_TEMPLATES,
+            _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_TEMPLATES,
+                    _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    }
 }

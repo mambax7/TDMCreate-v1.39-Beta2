@@ -22,23 +22,23 @@ include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_language($modules, $tables_arr, $table_permissions)
 {
     $mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_';
-	$language1 = '_AM_'.strtoupper($mod_name).'_THEREARE_';	
-	$file = 'admin.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;	
-	$text = '<?php'.const_header($modules, $file);
-	$ucf_mod_name = ucfirst($mod_name);
+    $language = '_AM_'.strtoupper($mod_name).'_';
+    $language1 = '_AM_'.strtoupper($mod_name).'_THEREARE_';
+    $file = 'admin.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;
+    $text = '<?php'.const_header($modules, $file);
+    $ucf_mod_name = ucfirst($mod_name);
 $text .= <<<EOT
 \n//Index
 define('{$language}STATISTICS', "{$ucf_mod_name} statistics");
 EOT;
 foreach (array_keys($tables_arr) as $i)
-{	
+{
     $table_name = $tables_arr[$i]->getVar('table_name');
-	$table_name_nohs = str_replace('_', ' ', ucfirst($table_name));
-	$stu_table_name = strtoupper($table_name);
-	$text .= <<<EOT
+    $table_name_nohs = str_replace('_', ' ', ucfirst($table_name));
+    $stu_table_name = strtoupper($table_name);
+    $text .= <<<EOT
 \ndefine('{$language1}{$stu_table_name}', "There are <span class='bold'>%s</span> {$table_name_nohs} in the database");
 EOT;
 if(isset($_REQUEST['table_online'])) {
@@ -60,14 +60,14 @@ EOT;
 foreach (array_keys($tables_arr) as $i)
 {
     $table_name = $tables_arr[$i]->getVar('table_name');
-	$table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
-	$table_name_nohs = str_replace('_', ' ', $table_name);
-	$stu_table_name = strtoupper($table_name);
+    $table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
+    $table_name_nohs = str_replace('_', ' ', $table_name);
+    $stu_table_name = strtoupper($table_name);
 $text .= <<<EOT
 \ndefine('{$language}ADD_{$stu_table_name}', "Add new {$table_name_nohs}");
 define('{$language}{$stu_table_name}_LIST', "List of {$table_name_nohs}");
 EOT;
-if(isset($_REQUEST['table_waiting'])) 
+if(isset($_REQUEST['table_waiting']))
 {
 $text .= <<<EOT
 \ndefine('{$language}{$stu_table_name}_WAITING', "Waiting {$table_name_nohs}");
@@ -85,44 +85,44 @@ define('{$language}FORMIMAGE_PATH', "File presents in %s");
 define('{$language}FORMACTION', "Action");
 EOT;
 $verif = true;
-foreach (array_keys($tables_arr) as $i) 
+foreach (array_keys($tables_arr) as $i)
 {
-	$table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
-	$fields_total = explode('|', $tables_arr[$i]->getVar('table_fields'));
-	$nb_fields = count($fields_total);
-	$nb_caracteres = strlen($table_fieldname);
-	$lng_prefix = $language.strtoupper($table_fieldname);
+    $table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
+    $fields_total = explode('|', $tables_arr[$i]->getVar('table_fields'));
+    $nb_fields = count($fields_total);
+    $nb_caracteres = strlen($table_fieldname);
+    $lng_prefix = $language.strtoupper($table_fieldname);
 
-	$table_name = str_replace('_', ' ', $tables_arr[$i]->getVar('table_name'));
-	$UcTable_name = UcFirstAndToLower($table_name);
-	//Recuperation des noms des tables
-	$text .= <<<EOT
+    $table_name = str_replace('_', ' ', $tables_arr[$i]->getVar('table_name'));
+    $UcTable_name = UcFirstAndToLower($table_name);
+    //Recuperation des noms des tables
+    $text .= <<<EOT
 \n// {$UcTable_name}
 EOT;
-	for($j=0; $j<$nb_fields; $j++)
-	{	
-		//Nom des fields
-		$fields1 = explode(':', $fields_total[$j]);
-		$fields[$j] = $fields1[0];
-		$fields_final[$j] = substr($fields1[0], $nb_caracteres);
-		$stl_table_name = strtolower($table_name);
-		if ( $verif == true )
-		{
+    for($j=0; $j<$nb_fields; $j++)
+    {
+        //Nom des fields
+        $fields1 = explode(':', $fields_total[$j]);
+        $fields[$j] = $fields1[0];
+        $fields_final[$j] = substr($fields1[0], $nb_caracteres);
+        $stl_table_name = strtolower($table_name);
+        if ( $verif == true )
+        {
 $text .= <<<EOT
 \ndefine('{$lng_prefix}_ADD', "Add a {$stl_table_name}");
 define('{$lng_prefix}_EDIT', "Edit {$stl_table_name}");
 define('{$lng_prefix}_DELETE', "Delete {$stl_table_name}");
 EOT;
-		}
-		$verif = false;
-		$ucf_fields = ucfirst($table_fieldname.str_replace("_", " ", $fields_final[$j]));
-		$lng_stu_fields_final = $lng_prefix.strtoupper($fields_final[$j]);
+        }
+        $verif = false;
+        $ucf_fields = ucfirst($table_fieldname.str_replace("_", " ", $fields_final[$j]));
+        $lng_stu_fields_final = $lng_prefix.strtoupper($fields_final[$j]);
 $text .= <<<EOT
 \ndefine('{$lng_stu_fields_final}', "{$ucf_fields}");
 EOT;
-	}
-	$verif = true;
-	$text .= <<<EOT
+    }
+    $verif = true;
+    $text .= <<<EOT
 EOT;
 }
 $text .= <<<EOT
@@ -131,12 +131,12 @@ EOT;
 foreach (array_keys($tables_arr) as $i)
 {
     $table_name = str_replace('_', ' ', ucfirst($tables_arr[$i]->getVar('table_name')));
-	$table_fieldname = str_replace('_', ' ', ucfirst($tables_arr[$i]->getVar('table_fieldname')));
-	$lng_prefix = $language.strtoupper($table_name).'_';
+    $table_fieldname = str_replace('_', ' ', ucfirst($tables_arr[$i]->getVar('table_fieldname')));
+    $lng_prefix = $language.strtoupper($table_name).'_';
 $text .= <<<EOT
 \ndefine('{$lng_prefix}BLOCK', "{$table_name} block");
 EOT;
-}  
+}
 if( $table_permissions == 1 ) {
 $text .= <<<EOT
 \n//Permissions
@@ -159,12 +159,12 @@ $text .= <<<EOT
 define('_AM_ERROR_NOFRAMEWORKS', "Error: You don&#39;t use the Frameworks \"admin module\". Please install this Frameworks");
 define('{$language}MAINTAINEDBY', "is maintained by the");
 EOT;
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_LANGUAGES,
-			_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_LANGUAGES,
-					_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_LANGUAGES,
+            _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_LANGUAGES,
+                    _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    }
 }

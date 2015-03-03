@@ -22,12 +22,12 @@ include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 
 function const_templates_admin_about($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_ABOUT_';
-	$file = $mod_name.'_admin_about.html';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/admin/'.$file;
-	$text = '<div id="about">
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_AM_'.strtoupper($mod_name).'_ABOUT_';
+    $file = $mod_name.'_admin_about.html';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/admin/'.$file;
+    $text = '<div id="about">
 	<table class="width90 floatcenter0">
 		<tr>
 			<td class="aligntop width45">
@@ -71,12 +71,12 @@ function const_templates_admin_about($modules)
 	</table>
 </div>
 ';
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
-			_AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
-					_AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
+            _AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
+                    _AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
+    }
 }

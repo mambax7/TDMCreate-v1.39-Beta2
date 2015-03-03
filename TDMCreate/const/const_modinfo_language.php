@@ -21,15 +21,15 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_modinfo_language($modules, $table_name, $table_image, $tables_arr, $table_notifications)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$prefix = '_MI_'.strtoupper($mod_name).'_';	
-	$file = 'modinfo.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;	
+    $mod_name = $modules->getVar('mod_name');
+    $prefix = '_MI_'.strtoupper($mod_name).'_';
+    $file = 'modinfo.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/'.$file;
     $menu = 1;
-	$mod_name = ucfirst( $mod_name );
-	$description = ucfirst( $modules->getVar('mod_description') );
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = ucfirst( $mod_name );
+    $description = ucfirst( $modules->getVar('mod_description') );
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \n// Admin
 define('{$prefix}NAME', "{$mod_name}");
@@ -37,11 +37,11 @@ define('{$prefix}DESC', "{$description}");
 //Menu
 define('{$prefix}ADMENU{$menu}', "Home");
 EOT;
-foreach (array_keys($tables_arr) as $i) 
-{   
+foreach (array_keys($tables_arr) as $i)
+{
     $menu++;
-	$table_name = str_replace('_', ' ', $tables_arr[$i]->getVar('table_name'));
-	$table_name = ucfirst($table_name);
+    $table_name = str_replace('_', ' ', $tables_arr[$i]->getVar('table_name'));
+    $table_name = ucfirst($table_name);
     $text .= <<<EOT
 \ndefine('{$prefix}ADMENU{$menu}', "{$table_name}");
 EOT;
@@ -60,16 +60,16 @@ unset( $menu );
 $text .= <<<EOT
 \n//Blocks
 EOT;
-foreach (array_keys($tables_arr) as $i) 
-{	
+foreach (array_keys($tables_arr) as $i)
+{
     $table_name = $tables_arr[$i]->getVar('table_name');
-	$prefix1 = $prefix.strtoupper($table_name).'';
-	$table_name = str_replace("_", " ", ucfirst($table_name));
-	if ( $tables_arr[$i]->getVar('table_blocks') == 1 ) {
-	$text .= <<<EOT
+    $prefix1 = $prefix.strtoupper($table_name).'';
+    $table_name = str_replace("_", " ", ucfirst($table_name));
+    if ( $tables_arr[$i]->getVar('table_blocks') == 1 ) {
+    $text .= <<<EOT
 \ndefine('{$prefix1}_BLOCK', "{$table_name} block");
 EOT;
-	}
+    }
 }
 $text .= <<<EOT
 \n//Config
@@ -86,9 +86,9 @@ define('{$prefix}USERPAGER', "User pager");
 define('{$prefix}USERPAGER_DESC', "User per page list");
 EOT;
 }
-if ( $table_image != '' ) 
+if ( $table_image != '' )
 {
-	$text .= <<<EOT
+    $text .= <<<EOT
 \ndefine('{$prefix}MAXSIZE', "Max size");
 define('{$prefix}MAXSIZE_DESC', "Set a number of max size uploads file in byte");
 define('{$prefix}MIMETYPES', "Mime Types");
@@ -105,7 +105,7 @@ define('{$prefix}BOOKMARKS_DESC', "Show Social Bookmarks in the form");
 define('{$prefix}FBCOMMENTS', "Facebook comments");
 define('{$prefix}FBCOMMENTS_DESC', "Allow Facebook comments in the form");
 EOT;
-if ( $table_notifications == 1 ) 
+if ( $table_notifications == 1 )
 {
 $text .= <<<EOT
 \n// Notifications
@@ -148,7 +148,7 @@ define('{$prefix}FILE_APPROVE_NOTIFY_CAPTION', "Allow Facebook comments in the f
 define('{$prefix}FILE_APPROVE_NOTIFY_DESC', "Allow Facebook comments in the form");
 define('{$prefix}FILE_APPROVE_NOTIFY_SUBJECT', "Allow Facebook comments in the form");
 EOT;
-}	
+}
 if ( $modules->getVar('mod_permissions') == 1 ) {
 $text .= <<<EOT
 \n// Permissions Groups
@@ -158,12 +158,12 @@ define('{$prefix}ADMINGROUPS', "Admin Group Permissions");
 define('{$prefix}ADMINGROUPS_DESC', "Which groups have access to tools and permissions page");
 EOT;
 }
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_LANGUAGES,
-			_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_LANGUAGES,
-					_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_LANGUAGES,
+            _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_LANGUAGES,
+                    _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    }
 }

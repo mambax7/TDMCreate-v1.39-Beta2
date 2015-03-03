@@ -20,36 +20,36 @@
  */
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_languages($modules)
-{   
+{
     $mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_';	
-	$languagesHandler=& xoops_getModuleHandler('tdmcreate_languages', $mod_name);
-	$text = '';	
-	$criteria = new CriteriaCompo();
-	$criteria->add(new Criteria('lang_module', '0', '>'));
-	$criteria->add(new Criteria('lang_file', $languages_file));
-	$criteria->setSort('lang_id');
-	$criteria->setOrder('ASC');
-	$languages_arr = $languagesHandler->getAll($criteria);	
-	$file = $languages_file.'.php';
-	$text .= '<?php'.const_header($modules, $file);	
-	if($languagesHandler->getVar('lang_file') == $languages_file) 
-	{			
-	    foreach (array_keys($languages_arr) as $i) 
-        {     
-	    $text .= '
+    $language = '_AM_'.strtoupper($mod_name).'_';
+    $languagesHandler=& xoops_getModuleHandler('tdmcreate_languages', $mod_name);
+    $text = '';
+    $criteria = new CriteriaCompo();
+    $criteria->add(new Criteria('lang_module', '0', '>'));
+    $criteria->add(new Criteria('lang_file', $languages_file));
+    $criteria->setSort('lang_id');
+    $criteria->setOrder('ASC');
+    $languages_arr = $languagesHandler->getAll($criteria);
+    $file = $languages_file.'.php';
+    $text .= '<?php'.const_header($modules, $file);
+    if($languagesHandler->getVar('lang_file') == $languages_file)
+    {
+        foreach (array_keys($languages_arr) as $i)
+        {
+        $text .= '
 define(\''.$language.strtoupper($languages_arr[$i]->getVar('lang_def')).'\', "'.ucfirst($languages_arr[$i]->getVar('lang_desc')).'");';
         }
-	}	
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.$GLOBALS['xoopsConfig']['language'].'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.$GLOBALS['xoopsConfig']['language'].'/'.$file;
-	
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_LANGUAGES,
-			_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_LANGUAGES,
-					_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	}
+    }
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.$GLOBALS['xoopsConfig']['language'].'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.$GLOBALS['xoopsConfig']['language'].'/'.$file;
+    
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_LANGUAGES,
+            _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_LANGUAGES,
+                    _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    }
 }

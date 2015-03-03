@@ -21,16 +21,16 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_pages($modules, $table_name, $table_fieldname, $table_fields, $table_parameters, $table_category)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name);
-	$language_manager = $language.'_'.strtoupper($table_fieldname);	
-	$stl_mod_name = strtolower($mod_name);
-	$stu_mod_name = strtoupper($mod_name);
-	$stu_table_name = strtoupper($table_name);
-	$file = $table_name.'.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_AM_'.strtoupper($mod_name);
+    $language_manager = $language.'_'.strtoupper($table_fieldname);
+    $stl_mod_name = strtolower($mod_name);
+    $stu_mod_name = strtoupper($mod_name);
+    $stu_table_name = strtoupper($table_name);
+    $file = $table_name.'.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once 'header.php';
 //It recovered the value of argument op in URL$
@@ -54,21 +54,21 @@ $parameters_total = explode('|', $table_parameters);
 //Recuperation des noms des tables
 for($i=0; $i<$nb_fields; $i++)
 {
-	//Nom des fields
-	$fields1 = explode(':', $fields_total[$i]);
-	$fields[$i] = $fields1[0];
-	//Afficher dans l'admin
-	if( $i == 0 ) {
-		$fpa[$i] = '0';
-	} else {
-		$param = explode(':', $parameters_total[$i-1]);
-		$fpt[$i] = $param[0]; // fpt = fields parameters type			
-		$fpa[$i] = $param[2]; // fpa = fields parameters admin
-		$fprf[$i] = $param[6]; // fprf = fields parameters required field
-		if ( $param[4] == 1 ) {
-			$fpmf = $fields[0]; // fpmf = fields parameters main field
-		}
-	}	
+    //Nom des fields
+    $fields1 = explode(':', $fields_total[$i]);
+    $fields[$i] = $fields1[0];
+    //Afficher dans l'admin
+    if( $i == 0 ) {
+        $fpa[$i] = '0';
+    } else {
+        $param = explode(':', $parameters_total[$i-1]);
+        $fpt[$i] = $param[0]; // fpt = fields parameters type
+        $fpa[$i] = $param[2]; // fpa = fields parameters admin
+        $fprf[$i] = $param[6]; // fprf = fields parameters required field
+        if ( $param[4] == 1 ) {
+            $fpmf = $fields[0]; // fpmf = fields parameters main field
+        }
+    }
 }
 
 $field_id = $fields[0];
@@ -76,10 +76,10 @@ $field_name = $fields[1];
 
 $text .= <<<EOT
 \n\necho \$adminMenu->addNavigation('{$table_name}.php');
-switch (\$op) 
-{   
-    case 'list': 
-    default:  
+switch (\$op)
+{
+    case 'list':
+    default:
 		\$adminMenu->addItemButton({$language}_ADD_{$stu_table_name}, '{$table_name}.php?op=new', 'add');
 		echo \$adminMenu->renderButton();
 		\$criteria = new CriteriaCompo();
@@ -88,17 +88,17 @@ switch (\$op)
 		\$numrows = \${$table_name}Handler->getCount();
 		\${$table_name}_arr = \${$table_name}Handler->getAll(\$criteria);
 EOT;
-	$fcn = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 0);
-	if ( $table_category != 1 )
-	{
+    $fcn = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 0);
+    if ( $table_category != 1 )
+    {
 $text .= <<<EOT
 		\n\t\t// Table view
-		if (\$numrows>0) 
-		{			
+		if (\$numrows>0)
+		{
 			echo "<table width='100%' cellspacing='1' class='outer'>
 					<tr>
 EOT;
-					$text .= $fcn;
+                    $text .= $fcn;
 $text .= <<<EOT
 \n\t\t\t\t\t<th class='center width5'>".{$language}_FORMACTION."</th>
 					</tr>";
@@ -106,13 +106,13 @@ $text .= <<<EOT
 			\$class = "odd";
 			
 			foreach (array_keys(\${$table_name}_arr) as \$i)
-			{	
+			{
 				echo "<tr class='".\$class."'>";
 				\$class = (\$class == "even") ? "odd" : "even";\n
 EOT;
-				$fields_data = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 1);
-				
-				$text .= $fields_data;
+                $fields_data = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 1);
+                
+                $text .= $fields_data;
 $text .= <<<EOT
 				\n\t\t\t\t\techo "<td class='center width5'>
 					<a href='{$table_name}.php?op=edit&{$field_id}=".\$i."'><img src=".\$sysPathIcon16."/edit.png alt='"._EDIT."' title='"._EDIT."'></a>
@@ -125,18 +125,18 @@ $text .= <<<EOT
             echo "<table width='100%' cellspacing='1' class='outer'>
 					<tr>
 EOT;
-					$text .= $fcn;
+                    $text .= $fcn;
 $text .= <<<EOT
 						\n\t\t\t\t\t<th class='center width5'>".{$language}_FORMACTION."</th>
 					</tr><tr><td class='errorMsg' colspan='{$nb_fields}'>There are no {$table_name}</td></tr>";
 			echo "</table><br /><br />";
-        }		
+        }
 EOT;
-	} else {
-		$text .= <<<EOT
+    } else {
+        $text .= <<<EOT
 		\n\t\t// Display function that allows children categories
 		function {$mod_name}_children(\$cat_id = 0, \${$table_name}_arr, \$prefix = "", \$order = "", &\$class)
-		{   
+		{
 			global \$pathIcon16;
 			\$categoriesHandler =& xoops_getModuleHandler("{$mod_name}_categories", "{$mod_name}");
 			\$icon = \$prefix."<img src='".'.strtoupper(\$mod_name).'_URL."/images/icons/16/arrow.gif'>";
@@ -148,12 +148,12 @@ EOT;
 				\$cat_weight = \$categories_arr[\$i]->getVar('cat_weight');
 				echo "<tr class='".\$class."'>";\n
 EOT;
-				$text .= const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 1);
+                $text .= const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 1);
 $text .= <<<EOT
 				\n\t\t\t\t\techo "<td class='center width5'>
 						<a href='{$table_name}.php?op=edit&{$field_id}=".\$i"'><img src=".\$sysPathIcon16."/edit.png alt='"._EDIT."' title='"._EDIT."'></a>
 						<a href='{$table_name}.php?op=delete&{$field_id}=".\$i"'><img src=".\$sysPathIcon16."/delete.png alt='"._DELETE."' title='"._DELETE."'></a>
-					  </td>                 
+					  </td>
 					</tr>";
 				\$class = (\$class == "even") ? "odd" : "even";
 				\$criteria = new CriteriaCompo();
@@ -170,36 +170,36 @@ $text .= <<<EOT
 		}
 
 		// Table view
-		if (\$numrows>0) 
+		if (\$numrows>0)
 		{
 			echo "<table width='100%' cellspacing='1' class='outer'>
 					<tr>
 EOT;
-						$fcn = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 0);
-						$text .= $fcn;
+                        $fcn = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 0);
+                        $text .= $fcn;
 $text .= <<<EOT
-						\n\t\t\t\t\t<th class='center width5'>".{$language}_FORMACTION."</th>		
+						\n\t\t\t\t\t<th class='center width5'>".{$language}_FORMACTION."</th>
 					</tr>";
 			\$class = "odd";
 			\$icon = "<img src='".{$stu_mod_name}_URL."/images/icons/16/arrow.gif'>";
 			foreach (array_keys(\${$table_name}_arr) as \$i)
-			{               
+			{
 				if ( \${$table_name}_arr[\$i]->getVar('{$table_fieldname}_pid') == 0 )
-				{                    
+				{
 					\$cat_id = \${$table_name}_arr[\$i]->getVar('{$table_fieldname}_id');
 					\$category_image = \${$table_name}_arr[\$i]->getVar('{$table_fieldname}_image');
 					\$category_title = \${$table_name}_arr[\$i]->getVar('{$table_fieldname}_title');
 					\$category_weight = \${$table_name}_arr[\$i]->getVar('{$table_fieldname}_weight');
 					echo "<tr class='".\$class."'>";\n
 EOT;
-					$fields_data = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, 1, 1);
-				
-					$text .= $fields_data;
+                    $fields_data = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, 1, 1);
+                
+                    $text .= $fields_data;
 $text .= <<<EOT
 					\n\t\t\t\t\techo "<td class='center width5'>
 							<a href='{$table_name}.php?op=edit&{$field_id}=".\$i"'><img src=".\$sysPathIcon16."/edit.png alt='"._EDIT."' title='"._EDIT."'></a>
 							<a href='{$table_name}.php?op=delete&{$field_id}=".\$i"'><img src=".\$sysPathIcon16."/delete.png alt='"._DELETE."' title='"._DELETE."'></a>
-						</td>                 
+						</td>
 					</tr>";
 					\$class = (\$class == "even") ? "odd" : "even";
 					\$criteria = new CriteriaCompo();
@@ -220,8 +220,8 @@ $text .= <<<EOT
             echo "<table width='100%' cellspacing='1' class='outer'>
 					<tr>
 EOT;
-					$fcn = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 0);
-					$text .= $fcn;
+                    $fcn = const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 0);
+                    $text .= $fcn;
 $text .= <<<EOT
 						\n\t\t\t\t\t<th class='center width5'>".{$language}_FORMACTION."</th>
 					</tr>
@@ -229,18 +229,18 @@ $text .= <<<EOT
 			echo "</table><br /><br />";
         }
 EOT;
-		}
-		$text .= <<<EOT
+        }
+        $text .= <<<EOT
     \n\tbreak;
 
-    case 'new':          
+    case 'new':
         \$adminMenu->addItemButton({$language}_{$stu_table_name}_LIST, '{$table_name}.php', 'list');
         echo \$adminMenu->renderButton();
 
         \$obj =& \${$table_name}Handler->create();
         \$form = \$obj->getForm();
 		\$form->display();
-    break;	
+    break;
 	
 	case 'save':
 		if ( !\$GLOBALS['xoopsSecurity']->check() ) {
@@ -250,10 +250,10 @@ EOT;
            \$obj =& \${$table_name}Handler->get(\$_REQUEST['{$field_id}']);
         } else {
            \$obj =& \${$table_name}Handler->create();
-        }		
+        }
 EOT;
-		$text .= const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 2);
-		
+        $text .= const_show_fields_parameters($mod_name, $table_name, $table_fieldname, $field_id, $nb_fields, $fields, $fpa, $fpt, $language, '', 2);
+        
 $text .= <<<EOT
         \n\t\tif (\${$table_name}Handler->insert(\$obj)) {
            redirect_header('{$table_name}.php?op=list', 2, {$language}_FORMOK);
@@ -289,17 +289,17 @@ $text .= <<<EOT
 		}
 	break;
 EOT;
-	if(isset($_REQUEST['table_online']) == 1) {
+    if(isset($_REQUEST['table_online']) == 1) {
 $text .= <<<EOT
-	\ncase 'update_online':		
+	\ncase 'update_online':
 		if (isset(\$_REQUEST['{$field_id}'])) {
 			\$obj =& \${$table_name}Handler->get(\$_REQUEST['{$field_id}']);
-		} 
+		}
 		\$obj->setVar('{$table_fieldname}_online', \$_REQUEST['{$table_fieldname}_online']);
 		if (\${$table_name}Handler->insert(\$obj)) {
 			redirect_header('{$table_name}.php', 3, {$language}_FORMOK);
 		}
-		echo \$obj->getHtmlErrors();	
+		echo \$obj->getHtmlErrors();
 	break;
 EOT;
 }
@@ -307,12 +307,12 @@ $text .= <<<EOT
 \n}
 include_once 'footer.php';
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ADMINS,
-				_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ADMINS,
-					_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ADMINS,
+                _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ADMINS,
+                    _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    }
 }

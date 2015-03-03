@@ -21,24 +21,24 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_js_jquery($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'script.js';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/js/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/js/'.$file;
-	$text = const_header($modules, $file).'
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'script.js';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/js/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/js/'.$file;
+    $text = const_header($modules, $file).'
 $(document).ready(function(){
 	$( "button, input:button, input:submit, input:file, input:reset" ).css("color","inherit").button();
 	$( "input[type=\'checkbox\']" ).css("color","#fff").button();
 	$( "input[type=\'radio\']" ).css("color","#fff").buttonset();
-	$( ".toolbar" ).css("color","#000").buttonset();       
+	$( ".toolbar" ).css("color","#000").buttonset();
 });
 ';
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_INCLUDES,
-				_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_INCLUDES,
-					_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_INCLUDES,
+                _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_INCLUDES,
+                    _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    }
 }

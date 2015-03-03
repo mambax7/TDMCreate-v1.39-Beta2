@@ -18,7 +18,7 @@
  * @author          Txmod Xoops http://www.txmodxoops.org
  * @version         $Id: includes.php 11084 2013-02-23 15:44:20Z timgno $
  */
-include '../../../include/cp_header.php'; 
+include '../../../include/cp_header.php';
 include_once("../include/functions.php");
 
 $modPath = XOOPS_ROOT_PATH.'/modules/TDMCreate';

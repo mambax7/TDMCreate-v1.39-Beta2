@@ -21,19 +21,19 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_class_helper($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_';
-	$file = 'helper.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/class/'.$file;	
-    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/class/'.$file;	
-	$ucf_mod_name = ucfirst($mod_name);
-	$mod_name_helper = $ucf_mod_name.'_Module_Helper_Abstract';
-	$text = '<?php'.const_header($modules, $file); 
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_AM_'.strtoupper($mod_name).'_';
+    $file = 'helper.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/class/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/class/'.$file;
+    $ucf_mod_name = ucfirst($mod_name);
+    $mod_name_helper = $ucf_mod_name.'_Module_Helper_Abstract';
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \n\ndefined('XOOPS_ROOT_PATH') or die('Restricted access');
 
 class {$ucf_mod_name} /*extends {$mod_name_helper}*/
-{ 
+{
 	/**
      * Init vars
      * @initialize variables
@@ -41,7 +41,7 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
 	var \$_config;
 	var \$_dirname;
 	var \$_handler;
-	var \$_module;	
+	var \$_module;
 
 	/**
      * Constructor
@@ -50,14 +50,14 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
      */
 	function __construct(\$dirname = '')
 	{
-		\$this->_dirname = \$dirname;		
+		\$this->_dirname = \$dirname;
 	}
 	
 	/**
      * Get instance
      * @return object
      */
-	function &getInstance() 
+	function &getInstance()
 	{
 		static \$instance = false;
 		if (!\$instance) {
@@ -71,7 +71,7 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
      * @initialize object
      */
 	function initConfig()
-    {        
+    {
         \$modConfigHandler = xoops_gethandler('config');
         \$this->_config = \$modConfigHandler->getConfigsByCat(0, \$this->getModule()->getVar('mid'));
     }
@@ -88,7 +88,7 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
         } else {
             \$module_handler = xoops_gethandler('module');
             \$this->_module = \$module_handler->getByDirname(\$this->_dirname);
-        }        
+        }
     }
 	
 	/**
@@ -96,7 +96,7 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
      * @initialize object
      */
 	function initHandler(\$name)
-    {        
+    {
         \$this->handler[\$name . '_handler'] = xoops_getmodulehandler(\$name, \$this->_dirname);
     }
 	
@@ -121,7 +121,7 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
 		// get all dirnames
 		\$module_handler = xoops_gethandler('module');
 		\$criteria = new CriteriaCompo();
-		if(count(\$dirnames) > 0) {		
+		if(count(\$dirnames) > 0) {
 			foreach(\$dirnames as \$mDir) {
 				\$criteria->add(new Criteria('dirname', \$mDir), 'OR');
 			}
@@ -147,17 +147,17 @@ class {$ucf_mod_name} /*extends {$mod_name_helper}*/
     {
         if (!isset(\$this->handler[\$name . '_handler'])) {
             \$this->initHandler(\$name);
-        }        
+        }
         return \$this->handler[\$name . '_handler'];
-    }	
+    }
 }
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_CLASSES,
-				_AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_CLASSES,
-					_AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_CLASSES,
+                _AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_CLASSES,
+                    _AM_TDMCREATE_CONST_NOTOK_CLASSES, $file);
+    }
 }

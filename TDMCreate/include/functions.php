@@ -19,7 +19,7 @@
  * @version         $Id: functions.php 11084 2013-02-23 15:44:20Z timgno $
  */
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');
+    die('XOOPS root path not defined');
 }
 
 function TDMCreate_CleanVars( &$global, $key, $default = '', $type = 'int' ) {
@@ -34,27 +34,29 @@ function TDMCreate_CleanVars( &$global, $key, $default = '', $type = 'int' ) {
     if ( $ret === false ) {
         return $default;
     }
+
     return $ret;
 }
 
 function TDMCreate_clearDir($folder) {
-	$opening=@opendir($folder);
-	if (!$opening) return;
-	while($file=readdir($opening)) {
-		if ($file == '.' || $file == '..') continue;
-			if (is_dir($folder."/".$file)) {
-				$r=TDMCreate_clearDir($folder."/".$file);
-				if (!$r) return false;
-			}
-			else {
-				$r=@unlink($folder."/".$file);
-				if (!$r) return false;
-			}
-	}
+    $opening=@opendir($folder);
+    if (!$opening) return;
+    while($file=readdir($opening)) {
+        if ($file == '.' || $file == '..') continue;
+            if (is_dir($folder."/".$file)) {
+                $r=TDMCreate_clearDir($folder."/".$file);
+                if (!$r) return false;
+            }
+            else {
+                $r=@unlink($folder."/".$file);
+                if (!$r) return false;
+            }
+    }
 closedir($opening);
 $r=@rmdir($folder);
 if (!$r) return false;
-	return true;
+
+    return true;
 }
 
 function TDMCreate_OpenTable($file, $_ok, $_notok) {
@@ -64,4 +66,3 @@ function TDMCreate_OpenTable($file, $_ok, $_notok) {
 function TDMCreate_CloseTable() {
     echo '</table><br />';
 }
-?>

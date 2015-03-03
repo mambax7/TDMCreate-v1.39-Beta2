@@ -21,17 +21,17 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_blocks($modules, $table_name, $table_fieldname, $table_fields, $table_parameters, $table_category)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MB_'.strtoupper($mod_name);
-	$mod_name_lowercase = strtolower($mod_name);
-	$file = $table_name.'.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/blocks/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/blocks/'.$file;
-	$constructor = const_fields($mod_name, $table_name, $table_fieldname, $table_category, $table_fields, $table_fieldname, 0, 0, 0, 0);
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MB_'.strtoupper($mod_name);
+    $mod_name_lowercase = strtolower($mod_name);
+    $file = $table_name.'.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/blocks/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/blocks/'.$file;
+    $constructor = const_fields($mod_name, $table_name, $table_fieldname, $table_category, $table_fields, $table_fieldname, 0, 0, 0, 0);
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
-\ninclude_once XOOPS_ROOT_PATH.'/modules/{$mod_name}/include/functions.php';	
-function b_{$mod_name_lowercase}_{$table_name}_show(\$options) 
+\ninclude_once XOOPS_ROOT_PATH.'/modules/{$mod_name}/include/functions.php';
+function b_{$mod_name_lowercase}_{$table_name}_show(\$options)
 {
 	include_once XOOPS_ROOT_PATH.'/modules/{$mod_name}/class/{$table_name}.php';
 	\$myts =& MyTextSanitizer::getInstance();
@@ -45,39 +45,39 @@ function b_{$mod_name_lowercase}_{$table_name}_show(\$options)
 	\$criteria = new CriteriaCompo();
 	array_shift(\$options);
 	array_shift(\$options);
-	array_shift(\$options);	
+	array_shift(\$options);
 EOT;
-	if ( $table_category == 1 ) {
+    if ( $table_category == 1 ) {
 $text .= <<<EOT
 	\n\tif (!(count(\$options) == 1 && \$options[0] == 0)) {
 		\$criteria->add(new Criteria('{$table_fieldname}_category', {$mod_name}_block_addCatSelect(\$options), 'IN'));
 	}
 EOT;
-	}	
-	//fields
-	$fields = explode('|', $table_fields);
-	$nb_fields = count($fields);
-	//print_r($fields_total);
-	//parameters
-	$parameters_total = explode('|', $table_parameters);
+    }
+    //fields
+    $fields = explode('|', $table_fields);
+    $nb_fields = count($fields);
+    //print_r($fields_total);
+    //parameters
+    $parameters_total = explode('|', $table_parameters);
 
-	for ($i = 0; $i < $nb_fields; $i++)
-	{	
-	    $field = explode(':', $fields[$i]);
-		if( $i == 0 ) {		
-			$fpif = $field[0]; // fpif = fields parameters auto_increment field
-			$fpbf = '0'; // fpdf = fields parameters display form
-		} else {
-			$param = explode(':', $parameters_total[$i-1]);
-			$fpbf[$i] = $param[3]; // fpdf = fields parameters display form
-			if ( $param[4] == 1 ) {
-				$fpmf = $field[0]; // fpmf = fields parameters main field
-			}
-		}	
-	}
-	
+    for ($i = 0; $i < $nb_fields; $i++)
+    {
+        $field = explode(':', $fields[$i]);
+        if( $i == 0 ) {
+            $fpif = $field[0]; // fpif = fields parameters auto_increment field
+            $fpbf = '0'; // fpdf = fields parameters display form
+        } else {
+            $param = explode(':', $parameters_total[$i-1]);
+            $fpbf[$i] = $param[3]; // fpdf = fields parameters display form
+            if ( $param[4] == 1 ) {
+                $fpmf = $field[0]; // fpmf = fields parameters main field
+            }
+        }
+    }
+    
 $text .= <<<EOT
-	\n\tif (\$type_block) 
+	\n\tif (\$type_block)
 	{
 		\$criteria->add(new Criteria('{$fpif}', 0, '!='));
 		\$criteria->setSort('{$fpif}');
@@ -86,27 +86,27 @@ $text .= <<<EOT
 
 	\$criteria->setLimit(\$nb_{$table_name});
 	\${$table_name}_arr = \${$table_name}Handler->getAll(\$criteria);
-	foreach (array_keys(\${$table_name}_arr) as \$i) 
+	foreach (array_keys(\${$table_name}_arr) as \$i)
 	{
 EOT;
-	for ($i = 0; $i < $nb_fields; $i++)
-	{	    
-		$structure_fields = explode(':', $fields[$i]);
-		if( $fpbf[$i] == 1 ) {
-		$text .= <<<EOT
+    for ($i = 0; $i < $nb_fields; $i++)
+    {
+        $structure_fields = explode(':', $fields[$i]);
+        if( $fpbf[$i] == 1 ) {
+        $text .= <<<EOT
 \n\t\t\${$table_fieldname}['{$structure_fields[0]}'] = \${$table_name}_arr[\$i]->getVar('{$structure_fields[0]}');
 EOT;
         }
-	}
+    }
 $text .= <<<EOT
 	\n\t}
 	return \${$table_fieldname};
 }
 
-function b_{$mod_name_lowercase}_{$table_name}_edit(\$options) 
+function b_{$mod_name_lowercase}_{$table_name}_edit(\$options)
 {
 EOT;
-	
+    
 if ( $table_category == 1 ) {
 $text .=<<<EOT
 	\ninclude_once XOOPS_ROOT_PATH.'/modules/{$mod_name}/class/category.php';
@@ -142,14 +142,14 @@ $text .= <<<EOT
 	}
 	\$form .= "</select>";
 	return \$form;
-}	
+}
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_BLOCKS,
-				_AM_TDMCREATE_CONST_NOTOK_BLOCKS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_BLOCKS,
-					_AM_TDMCREATE_CONST_NOTOK_BLOCKS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_BLOCKS,
+                _AM_TDMCREATE_CONST_NOTOK_BLOCKS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_BLOCKS,
+                    _AM_TDMCREATE_CONST_NOTOK_BLOCKS, $file);
+    }
 }

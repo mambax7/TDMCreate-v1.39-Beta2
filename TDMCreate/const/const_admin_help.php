@@ -21,9 +21,9 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_help($modules)
 {
-	$file = 'help.php';
-	$path_file = TDM_CREATE_MURL.'/'.$modules->getVar('mod_name').'/admin/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    $file = 'help.php';
+    $path_file = TDM_CREATE_MURL.'/'.$modules->getVar('mod_name').'/admin/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude 'admin_header.php';
 xoops_loadLanguage('help', \$xoopsModule->getVar('dirname', 'e'));

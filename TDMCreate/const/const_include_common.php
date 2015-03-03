@@ -22,19 +22,19 @@ include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_include_common($modules, $mod_a_w_name, $mod_a_w_url)
 {
     $mod_name = $modules->getVar('mod_name');
-    $stu_mn = strtoupper($mod_name); 
-	$stl_mn = strtolower($mod_name);
-	$file = 'common.php'; 
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/include/'.$file;
-	$awn = str_replace(" ", "", strtolower($mod_a_w_name));
-	$text = '<?php'.const_header($modules, $file);
+    $stu_mn = strtoupper($mod_name);
+    $stl_mn = strtolower($mod_name);
+    $file = 'common.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/include/'.$file;
+    $awn = str_replace(" ", "", strtolower($mod_a_w_name));
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 if( ! defined( "XOOPS_ROOT_PATH" ) ) exit ;
 if (!defined('{$stu_mn}_MODULE_PATH')) {
 	define('{$stu_mn}_DIRNAME', '{$stl_mn}');
 	define('{$stu_mn}_PATH', XOOPS_ROOT_PATH.'/modules/'.{$stu_mn}_DIRNAME);
-	define('{$stu_mn}_URL', XOOPS_URL.'/modules/'.{$stu_mn}_DIRNAME);	
+	define('{$stu_mn}_URL', XOOPS_URL.'/modules/'.{$stu_mn}_DIRNAME);
 	define('{$stu_mn}_UPLOAD_PATH', XOOPS_UPLOAD_PATH.'/'.{$stu_mn}_DIRNAME);
 	define('{$stu_mn}_UPLOAD_URL', XOOPS_UPLOAD_URL.'/'.{$stu_mn}_DIRNAME);
 	define('{$stu_mn}_IMAGE_PATH', {$stu_mn}_PATH.'/images');
@@ -53,12 +53,12 @@ if (!defined('{$stu_mn}_MODULE_PATH')) {
 \$copyright = "<a href='{$mod_a_w_url}' title='{$mod_a_w_name}' target='_blank'>
                      <img src='".{$stu_mn}_AUTHOR_LOGOIMG."' alt='{$mod_a_w_name}' /></a>";
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_INCLUDES,
-				_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_INCLUDES,
-					_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_INCLUDES,
+                _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_INCLUDES,
+                    _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    }
 }

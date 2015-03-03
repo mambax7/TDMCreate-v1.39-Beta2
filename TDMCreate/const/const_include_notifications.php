@@ -21,41 +21,41 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_include_notifications($modules, $table_name, $table_fieldname, $table_fields, $table_parameters)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'notification.inc.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
-	$root_path = XOOPS_URL.'/modules/{$mod_name}/include/'.$file;
-	
-	//fields
-	$fields_total = explode('|', $table_fields);
-	$nb_fields = count($fields_total);
-	//print_r($fields_total);
-	//parameters
-	$parameters_total = explode('|', $table_parameters);
-	$k = 0;
-	//Recuperation des parameters affichage dans le formulaire
-	for($j=0; $j<$nb_fields; $j++)
-	{
-		$fields = explode(':', $fields_total[$j]);
-		$field[$j] = $fields[0];
-		//Afficher dans les elements du formulaire et choisir le type
-		if( $j == 0 ) {
-		    $fpsf[$k] = $fields[0];
-			$fpmf = '0';
-		} else {
-			$parameters1 = explode(':', $parameters_total[$j-1]);
-			if ( $parameters1[5] == 1 )
-			{
-				$fpsf[$k] = $fields[0];
-				$k++;
-			}
-			if ( $parameters1[4] == 1 ) {
-				$fpmf = $fields[0];
-			}
-		}
-	}
-	
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'notification.inc.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
+    $root_path = XOOPS_URL.'/modules/{$mod_name}/include/'.$file;
+    
+    //fields
+    $fields_total = explode('|', $table_fields);
+    $nb_fields = count($fields_total);
+    //print_r($fields_total);
+    //parameters
+    $parameters_total = explode('|', $table_parameters);
+    $k = 0;
+    //Recuperation des parameters affichage dans le formulaire
+    for($j=0; $j<$nb_fields; $j++)
+    {
+        $fields = explode(':', $fields_total[$j]);
+        $field[$j] = $fields[0];
+        //Afficher dans les elements du formulaire et choisir le type
+        if( $j == 0 ) {
+            $fpsf[$k] = $fields[0];
+            $fpmf = '0';
+        } else {
+            $parameters1 = explode(':', $parameters_total[$j-1]);
+            if ( $parameters1[5] == 1 )
+            {
+                $fpsf[$k] = $fields[0];
+                $k++;
+            }
+            if ( $parameters1[4] == 1 ) {
+                $fpmf = $fields[0];
+            }
+        }
+    }
+    
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \n// comment callback functions
 function {$mod_name}_notify_iteminfo(\$category, \$item_id)
@@ -106,12 +106,12 @@ function {$mod_name}_notify_iteminfo(\$category, \$item_id)
 	}
 }
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_INCLUDES,
-				_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_INCLUDES,
-					_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_INCLUDES,
+                _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_INCLUDES,
+                    _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    }
 }

@@ -19,22 +19,22 @@
  * @version         $Id: const_waiting.php 11084 2013-02-23 15:44:20Z timgno $
  */
 include_once XOOPS_ROOT_PATH . '/modules/TDMCreate/include/functions_const.php';
-function const_waiting($modules, $tables_arr) 
+function const_waiting($modules, $tables_arr)
 {
     $mod_name = $modules->getVar('mod_name');
-	$file = 'waiting.plugin.php';
+    $file = 'waiting.plugin.php';
     $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/include/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/include/'.$file;
     $text = '<?php'.const_header($modules, $file).'
 function b_waiting_' . $mod_name . '()
 {
 	$db =& XoopsDatabaseFactory::getDatabaseConnection();
     $ret = array();
 ';
-    foreach (array_keys($tables_arr) as $i) 
-	{
-		$table_name = $tables_arr[$i]->getVar('table_name');
-		$table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
+    foreach (array_keys($tables_arr) as $i)
+    {
+        $table_name = $tables_arr[$i]->getVar('table_name');
+        $table_fieldname = $tables_arr[$i]->getVar('table_fieldname');
         $text.= '
 	// waiting mod_'. $table_name .'
 	$block = array();
@@ -51,12 +51,12 @@ function b_waiting_' . $mod_name . '()
         .= '
 	return $ret;
 };';
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_INCLUDES,
-				_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_INCLUDES,
-					_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_INCLUDES,
+                _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_INCLUDES,
+                    _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    }
 }

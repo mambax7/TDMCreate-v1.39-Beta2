@@ -22,11 +22,11 @@ include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_help_language($modules)
 {
     $mod_name = $modules->getVar('mod_name');
-	$language = '_AH_'.strtoupper($mod_name).'_';
-	$file = 'help.html';
+    $language = '_AH_'.strtoupper($mod_name).'_';
+    $file = 'help.html';
     $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/help/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/help/'.$file;
-	$text = <<<EOT
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/language/'.xoops_getConfigOption('language').'/help/'.$file;
+    $text = <<<EOT
 <div id='help-template' class='outer'>
     <h1 class='head'>Help:
         <a class='ui-corner-all tooltip' href='<{\$xoops_url}>/modules/{$mod_name}/admin/index.php'
@@ -50,12 +50,12 @@ function const_help_language($modules)
         <!-- -----Help Content ---------- -->
 </div>
 EOT;
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_LANGUAGES,
-			_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_LANGUAGES,
-					_AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_LANGUAGES,
+            _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_LANGUAGES,
+                    _AM_TDMCREATE_CONST_NOTOK_LANGUAGES, $file);
+    }
 }

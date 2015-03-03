@@ -21,14 +21,14 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_user_index($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MA_'.strtoupper($mod_name);
-	$file = 'index.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$stu_mod_name = strtoupper($mod_name);
-	$stl_mod_name = strtolower($mod_name);
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MA_'.strtoupper($mod_name);
+    $file = 'index.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $stu_mod_name = strtoupper($mod_name);
+    $stl_mod_name = strtolower($mod_name);
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once 'header.php';
 \$xoopsOption['template_main'] = '{$stl_mod_name}_index.html';
@@ -40,24 +40,24 @@ include_once XOOPS_ROOT_PATH.'/header.php';
 // description
 {$stl_mod_name}_meta_description({$language}_DESC);
 //
-\$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', {$stu_mod_name}_URL.'/index.php'); 
+\$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', {$stu_mod_name}_URL.'/index.php');
 \$GLOBALS['xoopsTpl']->assign('{$stl_mod_name}_url', {$stu_mod_name}_URL);
 \$GLOBALS['xoopsTpl']->assign('adv', xoops_getModuleOption('advertise', \$dirname));
 //
 \$GLOBALS['xoopsTpl']->assign('bookmarks', xoops_getModuleOption('bookmarks', \$dirname));
-\$GLOBALS['xoopsTpl']->assign('fbcomments', xoops_getModuleOption('fbcomments', \$dirname)); 
+\$GLOBALS['xoopsTpl']->assign('fbcomments', xoops_getModuleOption('fbcomments', \$dirname));
 //
 \$GLOBALS['xoopsTpl']->assign('admin', {$stu_mod_name}_ADMIN);
 \$GLOBALS['xoopsTpl']->assign('copyright', \$copyright);
 //
-include_once XOOPS_ROOT_PATH.'/footer.php';	
+include_once XOOPS_ROOT_PATH.'/footer.php';
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ROOTS,
-				_AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ROOTS,
-					_AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ROOTS,
+                _AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ROOTS,
+                    _AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
+    }
 }

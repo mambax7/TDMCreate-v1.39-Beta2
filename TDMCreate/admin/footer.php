@@ -21,6 +21,6 @@
 echo "<div align='center'><a href='http://www.xoops.org' title='Visit XOOPS' target='_blank'>
          <img src='".$pathIcon32."/xoopsmicrobutton.gif' alt='XOOPS' /></a></div>";
 echo "<div class='center smallsmall italic pad5'>
-          <strong>" . $xoopsModule->getVar('name') . "</strong> is maintained by the 
+          <strong>" . $xoopsModule->getVar('name') . "</strong> is maintained by the
             <a href='http://xoops.org/forums/newbb' title='Visit Support Forum' class='tooltip' rel='external'>Support Forum</a></div>";
 xoops_cp_footer();

@@ -21,13 +21,13 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_templates_admin_help($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_';
-	$language1 = '_AH_'.strtoupper($mod_name).'_';
-	$file = $mod_name.'_admin_help.html';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/admin/'.$file;
-	$text = '<!-- $Id '.strtoupper($mod_name).' $ -->
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_AM_'.strtoupper($mod_name).'_';
+    $language1 = '_AH_'.strtoupper($mod_name).'_';
+    $file = $mod_name.'_admin_help.html';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/admin/'.$file;
+    $text = '<!-- $Id '.strtoupper($mod_name).' $ -->
 <div id="Slideshow_Title" class="bold shadowlight alignmiddle">
     <div id="Slideshow_Help">
         <{$smarty.const.'.$language.'ADMIN_HELP}>
@@ -45,12 +45,12 @@ function const_templates_admin_help($modules)
 </div>
 <div class="clear"></div>
 ';
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
-			_AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
-					_AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
+            _AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_TEMPLATES_ADMIN,
+                    _AM_TDMCREATE_CONST_NOTOK_TEMPLATES_ADMIN, $file);
+    }
 }

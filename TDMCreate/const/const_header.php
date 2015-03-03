@@ -20,18 +20,18 @@
  */
 function const_header($module, $filename)
 {
-	$mod_name = $module->getVar('mod_name');
-	$mod_version = $module->getVar('mod_version');
-	$mod_min_xoops = $module->getVar('mod_min_xoops');
-	$mod_author = $module->getVar('mod_author');
-	$mod_credits = $module->getVar('mod_credits');
-	$mod_a_m = $module->getVar('mod_author_mail');
-	$mod_a_w_url = $module->getVar('mod_author_website_url');
-	$mod_license = $module->getVar('mod_license');  
-	$mod_subversion = $module->getVar('mod_subversion');
-	$date = date('D Y/m/d G:i:s');
+    $mod_name = $module->getVar('mod_name');
+    $mod_version = $module->getVar('mod_version');
+    $mod_min_xoops = $module->getVar('mod_min_xoops');
+    $mod_author = $module->getVar('mod_author');
+    $mod_credits = $module->getVar('mod_credits');
+    $mod_a_m = $module->getVar('mod_author_mail');
+    $mod_a_w_url = $module->getVar('mod_author_website_url');
+    $mod_license = $module->getVar('mod_license');
+    $mod_subversion = $module->getVar('mod_subversion');
+    $date = date('D Y/m/d G:i:s');
 
-	$text = <<<EOT
+    $text = <<<EOT
 \n/*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -52,6 +52,7 @@ function const_header($module, $filename)
  * @version         \$Id: {$mod_version} {$filename} {$mod_subversion} {$date}Z {$mod_credits} \$
  */
 EOT
-; 
-	return $text;
-}   
+;
+
+    return $text;
+}

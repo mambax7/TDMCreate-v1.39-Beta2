@@ -21,12 +21,12 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_header($modules, $table_name, $tables_arr)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'header.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
-	$ucfmod_name = ucfirst($mod_name);
-	$text = '<?php'.const_header($modules, $file).
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'header.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
+    $ucfmod_name = ucfirst($mod_name);
+    $text = '<?php'.const_header($modules, $file).
 <<<EOT
 \nrequire_once dirname(dirname(dirname(dirname(__FILE__)))). '/include/cp_header.php';
 \$thisPath = dirname(dirname(__FILE__));
@@ -39,7 +39,7 @@ $text .= <<<EOT
 // Get instance
 \${$ucfmod_name} = {$ucfmod_name}::getInstance();
 EOT;
-}	
+}
 $text .= <<<EOT
 \n\n\$thisModule = \$GLOBALS['xoopsModule']->getVar('dirname');
 
@@ -53,7 +53,7 @@ $text .= <<<EOT
 EOT;
 foreach (array_keys($tables_arr) as $i)
 {
-	$table_name = $tables_arr[$i]->getVar('table_name');
+    $table_name = $tables_arr[$i]->getVar('table_name');
 $text .= '$'.$table_name.'Handler =& xoops_getModuleHandler(\''.$table_name. '\', $thisModule);'.PHP_EOL;
 }
 $text .=<<<EOT
@@ -80,14 +80,14 @@ if ( file_exists(\$GLOBALS['xoops']->path(\$pathModuleAdmin.'/moduleadmin.php'))
 	redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
 }
 xoops_cp_header();
-\$adminMenu = new ModuleAdmin();	
+\$adminMenu = new ModuleAdmin();
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ADMINS,
-				_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ADMINS,
-					_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ADMINS,
+                _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ADMINS,
+                    _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    }
 }

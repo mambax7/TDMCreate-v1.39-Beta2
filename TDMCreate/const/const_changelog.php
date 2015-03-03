@@ -20,12 +20,12 @@
  */
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_changelog($modules)
-{	
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'changelog.txt';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/docs/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/docs/'.$file;
-	$date = date('Y/m/d G:i:s');	
+{
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'changelog.txt';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/docs/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/docs/'.$file;
+    $date = date('Y/m/d G:i:s');
 $text = <<<EOT
 ====================================
  {$date} Version {$modules->getVar('mod_version')}
@@ -33,12 +33,12 @@ $text = <<<EOT
  - Original release {$mod_name} ({$modules->getVar('mod_author')})
 EOT;
 
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_DOCS,
-				_AM_TDMCREATE_CONST_NOTOK_DOCS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_DOCS,
-					_AM_TDMCREATE_CONST_NOTOK_DOCS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_DOCS,
+                _AM_TDMCREATE_CONST_NOTOK_DOCS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_DOCS,
+                    _AM_TDMCREATE_CONST_NOTOK_DOCS, $file);
+    }
 }

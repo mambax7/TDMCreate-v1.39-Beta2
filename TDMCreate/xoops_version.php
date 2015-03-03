@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -89,11 +89,11 @@ $modversion['config'][$i]['formtype'] = "line_break";
 $modversion['config'][$i]['valuetype'] = "textbox";
 $modversion['config'][$i]['default'] = 'head';
 $i++;
-$modversion['config'][$i]['name'] = "tdmcreate_editor"; 
-$modversion['config'][$i]['title'] = "_MI_TDMCREATE_EDITOR"; 
-$modversion['config'][$i]['description'] = "_MI_TDMCREATE_EDITOR_DESC"; 
-$modversion['config'][$i]['formtype'] = "select"; 
-$modversion['config'][$i]['valuetype'] = "text"; 
+$modversion['config'][$i]['name'] = "tdmcreate_editor";
+$modversion['config'][$i]['title'] = "_MI_TDMCREATE_EDITOR";
+$modversion['config'][$i]['description'] = "_MI_TDMCREATE_EDITOR_DESC";
+$modversion['config'][$i]['formtype'] = "select";
+$modversion['config'][$i]['valuetype'] = "text";
 $modversion['config'][$i]['default'] = 'dhtml';
 xoops_load('xoopseditorhandler');
 $editor_handler = XoopsEditorHandler::getInstance();

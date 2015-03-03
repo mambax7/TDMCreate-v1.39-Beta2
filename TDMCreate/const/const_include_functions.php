@@ -21,19 +21,19 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_include_functions($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$file = 'functions.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/include/'.$file;
-	$text = '<?php'.const_header($modules, $file);
+    $mod_name = $modules->getVar('mod_name');
+    $file = 'functions.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/include/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/include/'.$file;
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \n/***************Blocks***************/
 function {$mod_name}_block_addCatSelect(\$cats) {
-	if(is_array(\$cats)) 
+	if(is_array(\$cats))
 	{
 		\$cat_sql = '('.current(\$cats);
 		array_shift(\$cats);
-		foreach(\$cats as \$cat) 
+		foreach(\$cats as \$cat)
 		{
 			\$cat_sql .= ','.\$cat;
 		}
@@ -81,12 +81,12 @@ function {$mod_name}_meta_description(\$content)
 	}
 }
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_INCLUDES,
-				_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_INCLUDES,
-					_AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_INCLUDES,
+                _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_INCLUDES,
+                    _AM_TDMCREATE_CONST_NOTOK_INCLUDES, $file);
+    }
 }

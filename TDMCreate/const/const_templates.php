@@ -21,12 +21,12 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_templates($modules, $tables_name, $tables_fields, $tables_parameters)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MD_'.strtoupper($mod_name).'_';
-	$file = $mod_name.'_index.html';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
-	$text = '
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MD_'.strtoupper($mod_name).'_';
+    $file = $mod_name.'_index.html';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
+    $text = '
 <{if $adv != \'\'}>
 <div class="center"><{$adv}></div>
 <{/if}>
@@ -47,17 +47,17 @@ $j=0;
 $structure_parameters[3] = 0;
 for ($i=0; $i<$nb_fields; $i++)
 {
-	$structure_fields = explode(":", $fields[$i]);
-	if ( $i != 0 ) {
-		$structure_parameters = explode(":", $parameters[$j]);
-		$j++;
-	}
-	if( $structure_parameters[3] == 1 || $i == 0) {
-		$text .= '<{$'.$tables_name.'.'.$structure_fields[0].'}>;
+    $structure_fields = explode(":", $fields[$i]);
+    if ( $i != 0 ) {
+        $structure_parameters = explode(":", $parameters[$j]);
+        $j++;
+    }
+    if( $structure_parameters[3] == 1 || $i == 0) {
+        $text .= '<{$'.$tables_name.'.'.$structure_fields[0].'}>;
 	';
-	}
+    }
 }
-	$text .= '
+    $text .= '
     </div>
     </br />
 <{/foreach}>
@@ -67,12 +67,12 @@ for ($i=0; $i<$nb_fields; $i++)
    <div class="center" style="height: 50px;"><{$smarty.const.'.$language.'ADMIN}></div>
 <{/if}>
 ';
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_TEMPLATES,
-			_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_TEMPLATES,
-					_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_TEMPLATES,
+            _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_TEMPLATES,
+                    _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    }
 }

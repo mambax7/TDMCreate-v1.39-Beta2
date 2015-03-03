@@ -20,8 +20,8 @@
  */
 include 'header.php';
     $criteria = new CriteriaCompo();
-	$count_modules = $modulesHandler->getCount($criteria);
-	$count_tables = $tablesHandler->getCount($criteria);
+    $count_modules = $modulesHandler->getCount($criteria);
+    $count_tables = $tablesHandler->getCount($criteria);
 
 $adminMenu->addInfoBox(_AM_TDMCREATE_ADMIN_NUMMODULES) ;
 $adminMenu->addInfoBoxLine(_AM_TDMCREATE_ADMIN_NUMMODULES, '<label>' ._AM_TDMCREATE_THEREARE_NUMMODULES. '</label>', $count_modules, 'Green') ;

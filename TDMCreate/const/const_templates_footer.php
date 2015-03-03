@@ -21,12 +21,12 @@
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_templates_footer($modules)
 {
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MA_'.strtoupper($mod_name).'_';
-	$file = $mod_name.'_footer.html';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
-	$text = <<<EOT
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MA_'.strtoupper($mod_name).'_';
+    $file = $mod_name.'_footer.html';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/templates/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/templates/'.$file;
+    $text = <<<EOT
 <{if \$bookmarks != 0}>
 <{include file="db:system_bookmarks.html"}>
 <{/if}>
@@ -66,12 +66,12 @@ $text .= <<<EOT
 \n<{include file='db:system_notification_select.html'}>
 EOT;
 }
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_TEMPLATES,
-			_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_TEMPLATES,
-					_AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_TEMPLATES,
+            _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_TEMPLATES,
+                    _AM_TDMCREATE_CONST_NOTOK_TEMPLATES, $file);
+    }
 }

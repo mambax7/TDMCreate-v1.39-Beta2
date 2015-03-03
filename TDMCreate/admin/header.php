@@ -34,8 +34,8 @@ $tablesHandler =& xoops_getModuleHandler('tables', $thisDirname);
 //
 $myts =& MyTextSanitizer::getInstance();
 if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
-	include_once(XOOPS_ROOT_PATH."/class/template.php");
-	$xoopsTpl = new XoopsTpl();
+    include_once(XOOPS_ROOT_PATH."/class/template.php");
+    $xoopsTpl = new XoopsTpl();
 }
 //
 $GLOBALS['xoopsTpl']->assign('pathIcon16', $pathIcon16);
@@ -46,9 +46,9 @@ xoops_loadLanguage('modinfo', $thisDirname);
 xoops_loadLanguage('main', $thisDirname);
 // Locad admin menu class
 if ( file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))){
-	include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
+    include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
 }else{
-	redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
+    redirect_header("../../../admin.php", 5, _AM_MODULEADMIN_MISSING, false);
 }
 xoops_cp_header();
-$adminMenu = new ModuleAdmin();	
+$adminMenu = new ModuleAdmin();

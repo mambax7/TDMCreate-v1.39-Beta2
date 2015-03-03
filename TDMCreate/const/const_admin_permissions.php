@@ -20,45 +20,45 @@
  */
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_admin_permissions($modules, $table_name, $table_fields, $table_parameters)
-{	
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_AM_'.strtoupper($mod_name).'_PERMISSIONS_';
-	$file = 'permissions.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
-	//fields
-	$fields_total = explode('|', $table_fields);
-	$nb_fields = count($fields_total);
-	//print_r($fields_total);
-	//parameters
-	$parameters_total = explode('|', $table_parameters);
+{
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_AM_'.strtoupper($mod_name).'_PERMISSIONS_';
+    $file = 'permissions.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/admin/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/admin/'.$file;
+    //fields
+    $fields_total = explode('|', $table_fields);
+    $nb_fields = count($fields_total);
+    //print_r($fields_total);
+    //parameters
+    $parameters_total = explode('|', $table_parameters);
 
-	//Recuperation des parameters affichage dans le formulaire
-	for($i=0; $i<$nb_fields; $i++)
-	{
-		$fields = explode(':', $fields_total[$i]);
-		//$fields[$i] = $fields1[0];
-		//Afficher dans les elements du formulaire et choisir le type
-		if( $i == 0 ) {
-			$fpe[$i] = '0';
-			$fpdf[$i] = '0';
-			$fpif = $fields[0]; // fpif = fields parameters auto_increment field
-		} else {
-			$param = explode(':', $parameters_total[$i-1]);
-			//print_r($param);
-			$fpdf[$i] = $param[3]; // fpdf = fields parameters display form
-			$fpe[$i] = $param[0]; // fpe = fields parameters elements				
-			$fprf[$i] = $param[6]; // fprf = fields parameters required field
-			if ( $param[4] == 1 ) {
-				$fpmf = $fields[0]; // fpmf = fields parameters main field
-			}
-		}
-	}	
-	$text = '<?php'.const_header($modules, $file);
+    //Recuperation des parameters affichage dans le formulaire
+    for($i=0; $i<$nb_fields; $i++)
+    {
+        $fields = explode(':', $fields_total[$i]);
+        //$fields[$i] = $fields1[0];
+        //Afficher dans les elements du formulaire et choisir le type
+        if( $i == 0 ) {
+            $fpe[$i] = '0';
+            $fpdf[$i] = '0';
+            $fpif = $fields[0]; // fpif = fields parameters auto_increment field
+        } else {
+            $param = explode(':', $parameters_total[$i-1]);
+            //print_r($param);
+            $fpdf[$i] = $param[3]; // fpdf = fields parameters display form
+            $fpe[$i] = $param[0]; // fpe = fields parameters elements
+            $fprf[$i] = $param[6]; // fprf = fields parameters required field
+            if ( $param[4] == 1 ) {
+                $fpmf = $fields[0]; // fpmf = fields parameters main field
+            }
+        }
+    }
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once 'header.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
-if( !empty(\$_POST['submit']) ) 
+if( !empty(\$_POST['submit']) )
 {
 	redirect_header( XOOPS_URL.'/modules/'.\$xoopsModule->dirname().'/admin/permissions.php', 1, _MP_GPERMUPDATED );
 }
@@ -80,7 +80,7 @@ echo "
 	<table border=0>
 		<tr>
 			<td>
-				<select name='permission' onChange='javascript: document.fselperm.submit()'>					
+				<select name='permission' onChange='javascript: document.fselperm.submit()'>
 					<option value='1'".\$selected[0].">".{$language}GLOBAL."</option>
 					<option value='2'".\$selected[1].">".{$language}APPROVE."</option>
 					<option value='3'".\$selected[2].">".{$language}SUBMIT."</option>
@@ -122,7 +122,7 @@ switch(\$permission)
 \$permform = new XoopsGroupPermForm(\$formTitle, \$module_id, \$permName, \$permDesc, 'admin/permissions.php');
 if (\$permission == 1) {
     foreach (\$globalPerms as \$perm_id => \$perm_name) {
-        \$permform->addItem(\$perm_id, \$perm_name);		
+        \$permform->addItem(\$perm_id, \$perm_name);
     }
 	echo \$permform->render();
 	echo '<br /><br />';
@@ -133,27 +133,27 @@ if (\$permission == 1) {
 	\${$table_name}_count = \${$table_name}Handler->getCount(\$criteria);
 	\${$table_name}_arr = \${$table_name}Handler->getObjects(\$criteria);
 	unset(\$criteria);
-    foreach (array_keys(\${$table_name}_arr) as \$i) {		
-		\$permform->addItem(\${$table_name}_arr[\$i]->getVar('{$fpif}'), \${$table_name}_arr[\$i]->getVar('{$fpmf}'));		
-	} 
-	// Check if {$table_name} exist before rendering the form and redirect, if there aren't {$table_name}   
-	if (\${$table_name}_count > 0) {		
+    foreach (array_keys(\${$table_name}_arr) as \$i) {
+		\$permform->addItem(\${$table_name}_arr[\$i]->getVar('{$fpif}'), \${$table_name}_arr[\$i]->getVar('{$fpmf}'));
+	}
+	// Check if {$table_name} exist before rendering the form and redirect, if there aren't {$table_name}
+	if (\${$table_name}_count > 0) {
 		echo \$permform->render();
 		echo '<br /><br />';
 	} else {
 		redirect_header ( '{$table_name}.php?op=new', 3, {$language}NOPERMSSET );
 		exit ();
-	}     
+	}
 }
 unset(\$permform);
 include_once 'footer.php';
 EOT;
-	createFile(	$tdmcreate_path, $text,
-			_AM_TDMCREATE_CONST_OK_ADMINS,
-			_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ADMINS,
-					_AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+            _AM_TDMCREATE_CONST_OK_ADMINS,
+            _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ADMINS,
+                    _AM_TDMCREATE_CONST_NOTOK_ADMINS, $file);
+    }
 }

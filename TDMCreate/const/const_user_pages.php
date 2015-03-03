@@ -20,20 +20,20 @@
  */
 include_once XOOPS_ROOT_PATH.'/modules/TDMCreate/include/functions_const.php';
 function const_user_pages($modules, $table_name, $table_fieldname, $table_fields, $table_parameters)
-{	
-	$mod_name = $modules->getVar('mod_name');
-	$language = '_MA_'.strtoupper($mod_name).'';
-	$file = $table_name.'.php';
-	$tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
-	$root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
-	$stu_mod_name = strtoupper($mod_name);
-	$stl_mod_name = strtolower($mod_name);
-	$stu_table_name = strtoupper($table_name);
-	$stl_table_name = strtolower($table_name);
-	$text = '<?php'.const_header($modules, $file);
+{
+    $mod_name = $modules->getVar('mod_name');
+    $language = '_MA_'.strtoupper($mod_name).'';
+    $file = $table_name.'.php';
+    $tdmcreate_path = TDM_CREATE_MURL.'/'.$mod_name.'/'.$file;
+    $root_path = XOOPS_URL.'/modules/'.$mod_name.'/'.$file;
+    $stu_mod_name = strtoupper($mod_name);
+    $stl_mod_name = strtolower($mod_name);
+    $stu_table_name = strtoupper($table_name);
+    $stl_table_name = strtolower($table_name);
+    $text = '<?php'.const_header($modules, $file);
 $text .= <<<EOT
 \ninclude_once 'header.php';
-\$xoopsOption['template_main'] = '{$stl_mod_name}_{$table_name}.html';	
+\$xoopsOption['template_main'] = '{$stl_mod_name}_{$table_name}.html';
 include_once XOOPS_ROOT_PATH . '/header.php';
 \$start = {$stl_mod_name}_CleanVars( \$_REQUEST, 'start', 0);
 // Define Stylesheet
@@ -46,7 +46,7 @@ include_once XOOPS_ROOT_PATH . '/header.php';
 \${$stl_table_name}_count = \${$stl_table_name}Handler->getCount(\$criteria);
 \${$stl_table_name}_arr = \${$stl_table_name}Handler->getAll(\$criteria);
 if (\${$stl_table_name}_count > 0) {
-	foreach (array_keys(\${$stl_table_name}_arr) as \$i) 
+	foreach (array_keys(\${$stl_table_name}_arr) as \$i)
 	{
 EOT;
 // Fields
@@ -58,26 +58,26 @@ $parameters_total = explode('|', $table_parameters);
 for ($i = 0; $i < $nb_fields; $i++)
 {
     $field = explode(':', $fields[$i]);
-	if( $i == 0 ) {
-		$fpt[$i] = '0';
-	} else {
-	    $param = explode(':', $parameters_total[$i-1]);
-		$fpt[$i] = $param[0]; // fpt = fields parameters type	
-		if ( $param[4] == 1 ) {
-			$fpmf = $field[0]; // fpmf = fields parameters main field
-		}
-	}
-	$structure_fields = explode(':', $fields[$i]);	
-	
-	if ( $fpt[$i] == 'XoopsFormDhtmlTextArea' || $fpt[$i] == 'XoopsFormTextArea' ) {
+    if( $i == 0 ) {
+        $fpt[$i] = '0';
+    } else {
+        $param = explode(':', $parameters_total[$i-1]);
+        $fpt[$i] = $param[0]; // fpt = fields parameters type
+        if ( $param[4] == 1 ) {
+            $fpmf = $field[0]; // fpmf = fields parameters main field
+        }
+    }
+    $structure_fields = explode(':', $fields[$i]);
+    
+    if ( $fpt[$i] == 'XoopsFormDhtmlTextArea' || $fpt[$i] == 'XoopsFormTextArea' ) {
 $text .= <<<EOT
 \n\t\t\${$table_fieldname}['{$structure_fields[0]}'] = strip_tags(\${$stl_table_name}_arr[\$i]->getVar('{$structure_fields[0]}'));
 EOT;
-	} else {
+    } else {
 $text .= <<<EOT
 \n\t\t\${$table_fieldname}['{$structure_fields[0]}'] = \${$stl_table_name}_arr[\$i]->getVar('{$structure_fields[0]}');
 EOT;
-	}
+    }
 }
 $text .= <<<EOT
 \n\t\t\$GLOBALS['xoopsTpl']->append('{$stl_table_name}', \${$table_fieldname});
@@ -96,24 +96,24 @@ $text .= <<<EOT
 //description
 {$stl_mod_name}_meta_description({$language}_{$stu_table_name}_DESC);
 //
-\$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', {$stu_mod_name}_URL . '/{$stl_table_name}.php'); 
+\$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', {$stu_mod_name}_URL . '/{$stl_table_name}.php');
 \$GLOBALS['xoopsTpl']->assign('{$stl_mod_name}_url', {$stu_mod_name}_URL);
 \$GLOBALS['xoopsTpl']->assign('adv', xoops_getModuleOption('advertise', \$dirname));
 //
 \$GLOBALS['xoopsTpl']->assign('bookmarks', xoops_getModuleOption('bookmarks', \$dirname));
-\$GLOBALS['xoopsTpl']->assign('fbcomments', xoops_getModuleOption('fbcomments', \$dirname)); 
+\$GLOBALS['xoopsTpl']->assign('fbcomments', xoops_getModuleOption('fbcomments', \$dirname));
 //
 \$GLOBALS['xoopsTpl']->assign('admin', {$stu_mod_name}_ADMIN);
 \$GLOBALS['xoopsTpl']->assign('copyright', \$copyright);
 //
-include_once XOOPS_ROOT_PATH . '/footer.php';	
+include_once XOOPS_ROOT_PATH . '/footer.php';
 EOT;
-	createFile(	$tdmcreate_path, $text,
-				_AM_TDMCREATE_CONST_OK_ROOTS,
-				_AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
-	if( $modules->getVar('mod_install') == 1 ) {
-		createFile(	$root_path, $text,
-					_AM_TDMCREATE_CONST_OK_ROOTS,
-					_AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
-	}
+    createFile(    $tdmcreate_path, $text,
+                _AM_TDMCREATE_CONST_OK_ROOTS,
+                _AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
+    if( $modules->getVar('mod_install') == 1 ) {
+        createFile(    $root_path, $text,
+                    _AM_TDMCREATE_CONST_OK_ROOTS,
+                    _AM_TDMCREATE_CONST_NOTOK_ROOTS, $file);
+    }
 }
